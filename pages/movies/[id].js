@@ -44,6 +44,9 @@ export default function MoviePage({ details }) {
                 </div>
                 <div class="block content is-small">
                   <p class="has-text-white">
+                    Genre: {details.genres.map((c) => `${c.name} `)}
+                  </p>
+                  <p class="has-text-white">
                     Runtime: {details.runtime} minutes
                   </p>
                   <p class="has-text-white">
