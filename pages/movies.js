@@ -23,7 +23,7 @@ export default function Movies({ movies }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   let movies = [];
   for (const movie of MovieIds) {
     const res = await fetch(
