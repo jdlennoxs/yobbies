@@ -19,6 +19,10 @@ export default function Home() {
               <p className="gradient-text">
                 Your invitation to the ultimate awards show.
               </p>
+              <div className="content">
+                <p className="subtitle">Sponsored by</p>
+                <img src="nutrigrain.png" style={{ height: "140px" }} />
+              </div>
             </div>
           </div>
         </div>
@@ -40,7 +44,7 @@ export default function Home() {
               <Link href="/awards">
                 <div className="box has-background-dark">
                   <a className="content has-text-centered">
-                    <h2 className="m-2 gradient-text">Awards & Nominees</h2>
+                    <h2 className="m-2 gradient-text">Awards</h2>
                   </a>
                 </div>
               </Link>
