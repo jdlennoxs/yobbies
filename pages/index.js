@@ -9,14 +9,14 @@ export default function Home() {
         <title>Welcome to the Yobbies</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section class="hero is-medium mt-6">
-        <div class="block hero-body">
-          <div class="container has-text-centered mb-3 ">
-            <div class="block">
+      <section className="hero is-medium mt-6">
+        <div className="block hero-body">
+          <div className="container has-text-centered mb-3 ">
+            <div className="block">
               <img src="full-yobbies.svg" height="256" width="256" />
             </div>
-            <div class="content block is-large">
-              <p class="gradient-text">
+            <div className="content block is-large">
+              <p className="gradient-text">
                 Your invitation to the ultimate awards show.
               </p>
             </div>
@@ -24,32 +24,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section mb-6">
-        <div class="container">
-          <div class="columns is-centered is-multiline block">
-            <div class="column is-one-third">
+      <section className="section mb-6">
+        <div className="container">
+          <div className="columns is-centered is-multiline block">
+            <div className="column is-one-third">
               <Link href="/movies">
-                <div class="box has-background-dark">
-                  <a class="content has-text-centered">
-                    <h2 class="m-2 gradient-text">Movies</h2>
+                <div className="box has-background-dark">
+                  <a className="content has-text-centered">
+                    <h2 className="m-2 gradient-text">Movies</h2>
                   </a>
                 </div>
               </Link>
             </div>
-            <div class="column is-one-third">
+            <div className="column is-one-third">
               <Link href="/awards">
-                <div class="box has-background-dark">
-                  <a class="content has-text-centered">
-                    <h2 class="m-2 gradient-text">Awards & Nominees</h2>
+                <div className="box has-background-dark">
+                  <a className="content has-text-centered">
+                    <h2 className="m-2 gradient-text">Awards & Nominees</h2>
                   </a>
                 </div>
               </Link>
             </div>
-            <div class="column is-one-third">
+            <div className="column is-one-third">
               <Link href="/state">
-                <div class="box has-background-dark">
-                  <a class="content has-text-centered">
-                    <h2 class="m-2 gradient-text">Statistics</h2>
+                <div className="box has-background-dark">
+                  <a className="content has-text-centered">
+                    <h2 className="m-2 gradient-text">Statistics</h2>
                   </a>
                 </div>
               </Link>
@@ -57,9 +57,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section class="section mb-6">
-        <div class="content is-medium has-text-centered m-6">
-          <p class="gradient-text">
+      <section className="section mb-6">
+        <div className="content is-medium has-text-centered m-6">
+          <p className="gradient-text">
             "The only award I truly want to win" - Octavia Spencer
           </p>
         </div>

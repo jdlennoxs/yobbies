@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <NavBar />
-      <div class="page-wrapper">
+      <div className="page-wrapper">
         <Component {...pageProps} />
       </div>
       <Footer />

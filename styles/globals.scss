@@ -7,6 +7,11 @@ $link-hover: $gold-light;
 $footer-padding: 2rem 1.5rem;
 $box-shadow: 0 0.5em 1em -0.125em rgba(#000, 0.2), 0 0px 0 1px rgba(#000, 0.02);
 $table-cell-border: 0px;
+
+$card-color: $link;
+$card-background-color: #000;
+$card-content-padding: 0.5rem;
+
 @import "bulma/bulma";
 html,
 body {
@@ -68,7 +73,7 @@ a {
   height: 100%;
   width: 100%;
   max-width: 342px;
-  max-height: 342*1.75px;
+  max-height: 342 * 1.75px;
   margin: auto;
   display: flex;
   // width: 250/75px;
@@ -89,4 +94,18 @@ a {
   margin: 0 0.5em 0.5em 0;
   display: inline;
   white-space: nowrap;
+}
+
+.card-image {
+  display: block;
+  height: 240px;
+}
+
+.card-content {
+  display: inline-block;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: rgba($dark, 0.5);
+  position: absolute;
+  bottom: 0px;
 }

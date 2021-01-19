@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import Detail from "../../components/detail";
 import MovieCard from "../../components/movie-card";
 import moviesdata from "../../data/movies.json";
+import actorsdata from "../../data/actors.json";
 
 export default function MoviePage({ details, director, cast }) {
   //   const detailsMap = {
@@ -18,7 +20,8 @@ export default function MoviePage({ details, director, cast }) {
   //     vote_average,
   //   };
 
-  const topCast = cast.slice(0, 10)
+  const topCast = cast.slice(0, 10);
+  const [showCast, setShowCast] = useState(topCast);
 
   return (
     <div class="my-6 py-6 mx-3">
@@ -46,39 +49,60 @@ export default function MoviePage({ details, director, cast }) {
                   <p class="subtitle is-5 has-text-white">Viewer Rating</p>
                 </div>
 
-                <Detail director={director} details={details}/>
+                <Detail director={director} details={details} />
               </div>
             </div>
           </div>
         </div>
         <div class="py-6 content">
-                  <h1 class="title is-1 has-text-white">Top billed cast</h1>
-                
-      <div class="columns is-multiline is-mobile">
-          {topCast.map(c=>(
-            
-          <div class="column is-one-sixth-desktop is-one-quarter-tablet is-half-mobile">
-            <div class="card">
-              <div class="card-image">
+          <h1 class="title is-1 has-text-white">Top billed cast</h1>
 
-                  <img 
-                  // style={{"object-fit": "cover", width: "150px"}} 
-                  src={`https://image.tmdb.org/t/p/w342/${c.profile_path}`} alt="Placeholder image" />
+          <div class="columns is-multiline is-mobile">
+            <>
+              {showCast.map((c) => (
+                <div class="column is-one-fifth-tablet is-half-mobile">
+                  <div class="card">
+                    <div class="card-image">
+                      <img
+                        // style={{"object-fit": "cover", width: "150px"}}
+                        src={
+                          c.profile_path
+                            ? `https://image.tmdb.org/t/p/w342/${c.profile_path}`
+                            : "/placeholder-person.png"
+                        }
+                        alt={c.name}
+                      />
+                    </div>
 
-           </div>
-           
-  <div class="card-content">
-    <div class="content">
-      <p class="title is-6">{c.name}</p>
-      <p class="subtitle is-6">{c.character}</p>
-    </div>
-    </div>
-    </div>
-            </div>
-          ))}
-        
-          {/* <MovieCard path={c.profile_path}/>))} */}
-        </div>
+                    <div class="card-content">
+                      <div class="content">
+                        <p class="title is-6 has-text-white">{c.name}</p>
+                        <p class="subtitle is-6 has-text-light">
+                          {c.character}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </>
+            {/* <MovieCard path={c.profile_path}/>))} */}
+          </div>
+          {showCast.length === 10 ? (
+            <button
+              className="button is-black"
+              onClick={() => setShowCast(cast)}
+            >
+              Show All
+            </button>
+          ) : (
+            <button
+              className="button is-black"
+              onClick={() => setShowCast(topCast)}
+            >
+              Show Less
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -96,11 +120,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // const res = await fetch(
-  //   `https://api.themoviedb.org/3/movie/${context.params.id}?api_key=1b18bf813f2054204db80c783520c4c6`
-  // );
-  // const details = await res.json();
-  const movie = moviesdata[context.params.id]
+  const movie = moviesdata[context.params.id];
   return {
     props: {
       details: movie.details,
