@@ -1,11 +1,18 @@
 import React from "react";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ path }) {
+  
+  const src = (path) => {
+  if (path && path.charAt(0) === "/") {
+    return `https://image.tmdb.org/t/p/w342/${path}`
+  }
+  return path
+}
+
   return (
-    // <div class="poster">
     <img
       class="poster"
-      src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+      src={src(path)}
     />
   );
 }

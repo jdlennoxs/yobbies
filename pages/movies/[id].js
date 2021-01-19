@@ -1,7 +1,8 @@
+import Detail from "../../components/detail";
 import MovieCard from "../../components/movie-card";
-import MovieData from "../../data/movies.json";
+import moviesdata from "../../data/movies.json";
 
-export default function MoviePage({ details }) {
+export default function MoviePage({ details, director, cast }) {
   //   const detailsMap = {
   //     budget,
   //     genres,
@@ -17,13 +18,15 @@ export default function MoviePage({ details }) {
   //     vote_average,
   //   };
 
+  const topCast = cast.slice(0, 10)
+
   return (
     <div class="my-6 py-6 mx-3">
       <div class="narrow-container">
         <div class="hero">
           <div class="columns">
             <div class="column is-narrow">
-              <MovieCard movie={details} />
+              <MovieCard path={details.poster_path} />
             </div>
 
             <div class="column">
@@ -43,140 +46,39 @@ export default function MoviePage({ details }) {
                   <p class="subtitle is-5 has-text-white">Viewer Rating</p>
                 </div>
 
-                <div class="block content is-small">
-                  <div class="table-container">
-                    <table class="table is-narrow has-background-dark">
-                      <tr>
-                        <td>
-                          <p class="has-text-white">Genre: </p>
-                        </td>
-                        <td>
-                          {details.genres.map((c) => (
-                            <div class="info-tag">{c.name}</div>
-                          ))}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <p class="has-text-white">Runtime: </p>
-                        </td>
-                        <td>
-                          <p class="has-text-white">
-                            {details.runtime} minutes
-                          </p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <p class="has-text-white">Country: </p>
-                        </td>
-                        <td>
-                          {details.production_countries.map((c) => (
-                            <div class="info-tag">{c.name}</div>
-                          ))}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <p class="has-text-white">Produced by: </p>
-                        </td>
-                        <td>
-                          <div
-                            style={{ "flex-wrap": "wrap" }}
-                            class="is-inline-flex"
-                          >
-                            {details.production_companies.map((c) => (
-                              <div class="info-tag">{c.name}</div>
-                            ))}
-                          </div>
-                        </td>
-                      </tr>
-
-                      {details.budget ? (
-                        <tr>
-                          <td>
-                            <p class="has-text-white">Budget: </p>
-                          </td>
-                          <td>
-                            <p class="has-text-white">
-                              {new Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                              }).format(details.budget)}
-                            </p>
-                          </td>
-                        </tr>
-                      ) : null}
-
-                      {details.revenue ? (
-                        <tr>
-                          <td>
-                            <p class="has-text-white">Revenue: </p>
-                          </td>
-                          <td>
-                            <p class="has-text-white">
-                              {new Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                              }).format(details.revenue)}
-                            </p>
-                          </td>
-                        </tr>
-                      ) : null}
-                    </table>
-                  </div>
-                </div>
-                {/* <div class="block content is-small">
-                  <p class="has-text-white">
-                    Genre:{" "}
-                    {details.genres.map((c) => (
-                      <div class="info-tag">{c.name}</div>
-                    ))}
-                  </p>
-                  <p class="has-text-white">
-                    Runtime: {details.runtime} minutes
-                  </p>
-                  <p class="has-text-white">
-                    Country:{" "}
-                    {details.production_countries.map((c) => (
-                      <div class="info-tag">{c.name}</div>
-                    ))}
-                  </p>
-                  <div>
-                    <p style={{ float: "left" }} class="has-text-white">
-                      Produced By:{" "}
-                    </p>
-                    <div class="">
-                      {details.production_companies.map((c) => (
-                        <div class="info-tag">{c.name}</div>
-                      ))}
-                    </div>
-                  </div>
-                  {details.budget ? (
-                    <p class="has-text-white">
-                      Budget:{" "}
-                      {new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      }).format(details.budget)}
-                    </p>
-                  ) : null}
-                  {details.revenue ? (
-                    <p class="has-text-white">
-                      Revenue:{" "}
-                      {new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      }).format(details.revenue)}
-                    </p>
-                  ) : null}
-                </div> */}
+                <Detail director={director} details={details}/>
               </div>
             </div>
           </div>
+        </div>
+        <div class="py-6 content">
+                  <h1 class="title is-1 has-text-white">Top billed cast</h1>
+                
+      <div class="columns is-multiline is-mobile">
+          {topCast.map(c=>(
+            
+          <div class="column is-one-sixth-desktop is-one-quarter-tablet is-half-mobile">
+            <div class="card">
+              <div class="card-image">
+
+                  <img 
+                  // style={{"object-fit": "cover", width: "150px"}} 
+                  src={`https://image.tmdb.org/t/p/w342/${c.profile_path}`} alt="Placeholder image" />
+
+           </div>
+           
+  <div class="card-content">
+    <div class="content">
+      <p class="title is-6">{c.name}</p>
+      <p class="subtitle is-6">{c.character}</p>
+    </div>
+    </div>
+    </div>
+            </div>
+          ))}
+        
+          {/* <MovieCard path={c.profile_path}/>))} */}
+        </div>
         </div>
       </div>
     </div>
@@ -184,8 +86,8 @@ export default function MoviePage({ details }) {
 }
 
 export async function getStaticPaths() {
-  const paths = MovieData.map((movie) => ({
-    params: { id: movie.id },
+  const paths = Object.keys(moviesdata).map((slug) => ({
+    params: { id: slug },
   }));
   return {
     paths,
@@ -194,14 +96,16 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${context.params.id}?api_key=1b18bf813f2054204db80c783520c4c6`
-  );
-  const details = await res.json();
-
+  // const res = await fetch(
+  //   `https://api.themoviedb.org/3/movie/${context.params.id}?api_key=1b18bf813f2054204db80c783520c4c6`
+  // );
+  // const details = await res.json();
+  const movie = moviesdata[context.params.id]
   return {
     props: {
-      details,
+      details: movie.details,
+      director: movie.director,
+      cast: movie.cast,
     },
   };
 }

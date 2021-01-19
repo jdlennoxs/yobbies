@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MovieCard from "../components/movie-card";
-import MovieIds from "../data/movies.json";
+import metadata from "../data/metadata.json";
+import moviesdata from "../data/movies.json";
 
 export default function Movies({ movies }) {
   return (
@@ -11,9 +12,9 @@ export default function Movies({ movies }) {
       <div class="columns is-multiline">
         {movies.map((movie) => (
           <div class="column is-one-fifth-desktop is-one-third-tablet">
-            <Link href={`/movies/${movie.id}`}>
+            <Link href={`/movies/${movie.slug}`}>
               <a class="poster-link">
-                <MovieCard movie={movie.detail} />
+                <MovieCard path={movie.details.poster_path} />
               </a>
             </Link>
           </div>
@@ -25,12 +26,8 @@ export default function Movies({ movies }) {
 
 export async function getStaticProps() {
   let movies = [];
-  for (const movie of MovieIds) {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${movie.id}?api_key=1b18bf813f2054204db80c783520c4c6`
-    );
-    const detail = await res.json();
-    movies.push({ ...movie, detail });
+  for (const movie of metadata) {
+    movies.push({ ...movie, details: moviesdata[movie.slug].details });
   }
 
   return {
