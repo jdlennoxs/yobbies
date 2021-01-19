@@ -37,8 +37,8 @@ export default function NavBar() {
             <a className="navbar-link">Awards</a>
 
             <div className="navbar-dropdown has-background-black">
-              <a className="navbar-item has-text-white">About</a>
-              <a className="navbar-item has-text-white">Jobs</a>
+              <a className="navbar-item has-text-white">Movies</a>
+              <a className="navbar-item has-text-white">Cast</a>
               <a className="navbar-item has-text-white">Contact</a>
             </div>
           </div>

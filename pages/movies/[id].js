@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Detail from "../../components/detail";
 import MovieCard from "../../components/movie-card";
+import ActorCard from "../../components/actor-card";
 import moviesdata from "../../data/movies.json";
-import actorsdata from "../../data/actors.json";
 
 export default function MoviePage({ details, director, cast }) {
   //   const detailsMap = {
@@ -42,7 +42,9 @@ export default function MoviePage({ details, director, cast }) {
                 </div>
                 <div class="block content is-medium">
                   <p class="has-text-white subtitle is-3">{details.tagline}</p>
-                  <p class="has-text-white">{details.overview}</p>
+                  <p class="has-text-white">
+                    {details.overview.replace(/&amp;/g, "&")}
+                  </p>
                   <p class="title is-3 has-text-primary">
                     {10 * details.vote_average}%
                   </p>
@@ -59,30 +61,9 @@ export default function MoviePage({ details, director, cast }) {
 
           <div class="columns is-multiline is-mobile">
             <>
-              {showCast.map((c) => (
+              {showCast.map((actor) => (
                 <div class="column is-one-fifth-tablet is-half-mobile">
-                  <div class="card">
-                    <div class="card-image">
-                      <img
-                        // style={{"object-fit": "cover", width: "150px"}}
-                        src={
-                          c.profile_path
-                            ? `https://image.tmdb.org/t/p/w342/${c.profile_path}`
-                            : "/placeholder-person.png"
-                        }
-                        alt={c.name}
-                      />
-                    </div>
-
-                    <div class="card-content">
-                      <div class="content">
-                        <p class="title is-6 has-text-white">{c.name}</p>
-                        <p class="subtitle is-6 has-text-light">
-                          {c.character}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <ActorCard actor={actor} showCharacter />
                 </div>
               ))}
             </>

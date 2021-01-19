@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -9,7 +8,7 @@ export default function Home() {
         <title>Welcome to the Yobbies</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="hero is-medium mt-6">
+      <section className="hero is-small mt-6">
         <div className="block hero-body">
           <div className="container has-text-centered mb-3 ">
             <div className="block">
@@ -21,7 +20,7 @@ export default function Home() {
               </p>
               <div className="content">
                 <p className="subtitle">Sponsored by</p>
-                <img src="nutrigrain.png" style={{ height: "140px" }} />
+                <img src="nutrigrain.png" style={{ height: "100px" }} />
               </div>
             </div>
           </div>
