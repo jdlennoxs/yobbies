@@ -98,7 +98,7 @@ a {
 
 .card-image {
   display: block;
-  height: 240px;
+  height: 260px;
 }
 
 .card-content {
@@ -108,4 +108,13 @@ a {
   background-color: rgba($dark, 0.5);
   position: absolute;
   bottom: 0px;
+}
+
+.card {
+  &:hover {
+    .card-content {
+      display: none;
+      transition: 0.5s;
+    }
+  }
 }
