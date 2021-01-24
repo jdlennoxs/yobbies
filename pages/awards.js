@@ -1,33 +1,67 @@
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import ActorCard from "../components/actor-card";
+import moviesdata from "../data/movies.json";
+import yobsdata from "../data/yobs.json"
 
 const POSTS_PATH = path.join(process.cwd(), "data/awards");
 
-export default function Awards({ awards }) {
+export default function Awards({ awards, movies, yobs }) {
+  const lookupFilm = (id) => movies[id].details.title
+  const lookupYobs = (id) => yobs[id].name
   return (
     <div className="narrow-container p-6 my-6 ">
       <div className="content">
         <h1 className="has-text-white">The Awards</h1>
       </div>
       <ul>
-        <div className="columns is-multiline">
-          {awards.map((award) => (
-            <li>
+        {/* <div className="columns is-multiline"> */}
+        {awards.map((award) => (
+          <li>
+            <div className="block">
               <Link href={`/awards/${award.slug}`}>
                 <a className="poster-link">
-                  <h2>{award.name}</h2>
+                  <>
+                    <h2 className="is-size-4 has-text-white">{award.name}</h2>
+                    <p>{award.description}</p>
+                  </>
                 </a>
               </Link>
-            </li>
-          ))}
-        </div>
+            </div>
+            <div className="table-container">
+              <table className="table is-narrow has-background-dark">
+                <tr>
+                  <td>
+                    <div style={{ flexWrap: "wrap" }} className="is-flex">
+                      {award.type === "film" && award.nominees ? (
+                        <>
+                          {award.nominees.map((n) => (
+                            <div className="info-tag">{lookupFilm(n)}</div>
+                          ))}
+                        </>
+                      ) : null}
+                      {award.type === "yob" && award.nominees ? (<>
+                        {award.nominees.map(n => (
+                          <div className="info-tag">{lookupYobs(n)}</div>
+                        ))}
+                      </>) : null}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </li>
+        ))}
+        {/* </div> */}
       </ul>
     </div>
   );
 }
 
 export async function getStaticProps() {
+  const movies = moviesdata
+  const yobs = yobsdata
   const fullPaths = fs.readdirSync(POSTS_PATH);
   const paths = fullPaths // Remove file extensions for page paths
     .map((path) => path.replace(/\.json?$/, ""))
@@ -37,11 +71,13 @@ export async function getStaticProps() {
   const awards = paths.map((p) => {
     const fullPath = path.join(POSTS_PATH, `${p.id}.json`);
     const fileContents = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-    return { name: fileContents.name, slug: p.id };
+    return { name: fileContents.name, description: fileContents.description, nominees: fileContents.nominees, type: fileContents.type, slug: p.id };
   });
   return {
     props: {
       awards,
+      movies,
+      yobs
     },
   };
   // will be passed to the page component as props

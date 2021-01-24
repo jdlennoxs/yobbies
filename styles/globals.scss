@@ -88,12 +88,13 @@ a {
 }
 
 .info-tag {
-  background-color: $dark;
+  background-color: hsl(0, 0%, 14%);
   color: $white;
   border-radius: 5px;
   margin: 0 0.5em 0.5em 0;
   display: inline;
   white-space: nowrap;
+  padding: 0.25em;
 }
 
 .card-image {

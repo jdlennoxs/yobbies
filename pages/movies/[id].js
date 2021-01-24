@@ -63,7 +63,7 @@ export default function MoviePage({ details, director, cast }) {
             <>
               {showCast.map((actor) => (
                 <div class="column is-one-fifth-tablet is-half-mobile">
-                  <ActorCard actor={actor} showCharacter />
+                  <ActorCard name={actor.name} subtitle={actor.character} image={actor.profile_path} type="actor" showSubtitle />
                 </div>
               ))}
             </>
@@ -77,13 +77,13 @@ export default function MoviePage({ details, director, cast }) {
               Show All
             </button>
           ) : (
-            <button
-              className="button is-black"
-              onClick={() => setShowCast(topCast)}
-            >
-              Show Less
-            </button>
-          )}
+              <button
+                className="button is-black"
+                onClick={() => setShowCast(topCast)}
+              >
+                Show Less
+              </button>
+            )}
         </div>
       </div>
     </div>

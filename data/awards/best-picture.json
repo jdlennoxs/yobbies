@@ -1,6 +1,6 @@
 {
-  "name": "Best Picture",
-  "description": "The award for the best film of film club",
+  "name": "Best picture",
+  "description": "Awarded to the overall best picture",
   "type": "film",
-  "nominees": ["clouds-of-sils-maria", "magic", "ma", "the-farewell"]
+  "nominees": []
 }

@@ -1,0 +1,7 @@
+{
+    "name": "Best international picture",
+    "description": "Awarded to the best picture in the international category",
+    "type": "film",
+    "nominees": ["only-yesterday","force-majeure","a-fantastic-woman","holy-motors","november","mustang"]
+  }
+  

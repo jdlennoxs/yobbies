@@ -1,26 +1,36 @@
-export default function ActorCard({ actor, showCharacter }) {
+export default function ActorCard({ name, subtitle, image, type, showSubtitle }) {
+  let imagePath
+  if (type === "actor") {
+    imagePath = image
+      ? `https://image.tmdb.org/t/p/w342/${image}`
+      : "/placeholder-person.png"
+  } else if (type === "film") {
+    imagePath = image.charAt(0) === "/"
+      ?
+      `https://image.tmdb.org/t/p/w342/${image}` :
+      image
+  }
+
   return (
     <div class="card">
       <div class="card-image">
         <img
-          // style={{"object-fit": "cover", width: "150px"}}
           src={
-            actor.profile_path
-              ? `https://image.tmdb.org/t/p/w342/${actor.profile_path}`
-              : "/placeholder-person.png"
+            imagePath
           }
-          alt={actor.name}
+          alt={name}
         />
       </div>
 
-      <div class="card-content">
-        <div class="content">
-          <p class="title is-5 has-text-white">{actor.name}</p>
-          {showCharacter ? (
-            <p class="subtitle is-6 has-text-light">{actor.character}</p>
-          ) : null}
-        </div>
-      </div>
+      {name ? (
+        <div class="card-content">
+          <div class="content">
+            <p class="title is-5 has-text-white">{name}</p>
+            {showSubtitle ? (
+              <p class="subtitle is-6 has-text-light">{subtitle}</p>
+            ) : null}
+          </div>
+        </div>) : null}
     </div>
   );
 }
