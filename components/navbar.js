@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <nav
       className="navbar is-dark"
@@ -17,10 +19,11 @@ export default function NavBar() {
 
         <a
           role="button"
-          className="navbar-burger"
+          className={"navbar-burger " + (isOpen ? "is-active" : "")}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
+          onClick={() => setIsOpen(!isOpen)}
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -28,20 +31,15 @@ export default function NavBar() {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div id="navbarBasicExample" className={"navbar-menu " + (isOpen ? "is-active" : "")}>
         <div className="navbar-start">
           <Link href="/movies">
             <a className="navbar-item">Movies</a>
           </Link>
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Awards</a>
 
-            <div className="navbar-dropdown has-background-black">
-              <a className="navbar-item has-text-white">Movies</a>
-              <a className="navbar-item has-text-white">Cast</a>
-              <a className="navbar-item has-text-white">Contact</a>
-            </div>
-          </div>
+          <Link href="/awards">
+            <a className="navbar-item">Awards</a>
+          </Link>
 
           <Link href="/stats">
             <a className="navbar-item">Stats</a>

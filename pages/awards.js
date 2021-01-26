@@ -1,14 +1,15 @@
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
-import ActorCard from "../components/actor-card";
 import moviesdata from "../data/movies.json";
 import yobsdata from "../data/yobs.json"
+import actorsdata from "../data/actors.json"
 
 const POSTS_PATH = path.join(process.cwd(), "data/awards");
 
-export default function Awards({ awards, movies, yobs }) {
+export default function Awards({ awards, movies, yobs, actors }) {
   const lookupFilm = (id) => movies[id].details.title
+  const lookupActor = (id) => actors[id].name
   const lookupYobs = (id) => yobs[id].name
   return (
     <div className="narrow-container p-6 my-6 ">
@@ -16,7 +17,6 @@ export default function Awards({ awards, movies, yobs }) {
         <h1 className="has-text-white">The Awards</h1>
       </div>
       <ul>
-        {/* <div className="columns is-multiline"> */}
         {awards.map((award) => (
           <li>
             <div className="block">
@@ -41,6 +41,13 @@ export default function Awards({ awards, movies, yobs }) {
                           ))}
                         </>
                       ) : null}
+                      {award.type === "actor" && award.nominees ? (
+                        <>
+                          {award.nominees.map((n) => (
+                            <div className="info-tag">{lookupActor(n.name)}</div>
+                          ))}
+                        </>
+                      ) : null}
                       {award.type === "yob" && award.nominees ? (<>
                         {award.nominees.map(n => (
                           <div className="info-tag">{lookupYobs(n)}</div>
@@ -53,7 +60,6 @@ export default function Awards({ awards, movies, yobs }) {
             </div>
           </li>
         ))}
-        {/* </div> */}
       </ul>
     </div>
   );
@@ -62,6 +68,7 @@ export default function Awards({ awards, movies, yobs }) {
 export async function getStaticProps() {
   const movies = moviesdata
   const yobs = yobsdata
+  const actors = actorsdata
   const fullPaths = fs.readdirSync(POSTS_PATH);
   const paths = fullPaths // Remove file extensions for page paths
     .map((path) => path.replace(/\.json?$/, ""))
@@ -77,6 +84,7 @@ export async function getStaticProps() {
     props: {
       awards,
       movies,
+      actors,
       yobs
     },
   };

@@ -1,7 +1,15 @@
 {
-    "name": "Best crying scene",
-    "description": "Awarded to the performer who stirred our emotions the most strongly in a crying scene",
-    "type": "actor",
-    "nominees": []
-  }
-  
+  "name": "Best crying scene",
+  "description": "Awarded to the performer who stirred our emotions the most strongly in a crying scene",
+  "type": "actor",
+  "nominees": [
+    {
+      "name": "juliette-binoche",
+      "film": "clouds-of-sils-maria"
+    },
+    {
+      "name": "octavia-spencer",
+      "film": "ma"
+    }
+  ]
+}
