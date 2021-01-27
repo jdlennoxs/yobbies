@@ -12,25 +12,27 @@ export default function ActorCard({ name, subtitle, image, type, showSubtitle })
   }
 
   return (
-    <div class="card">
-      <div class="card-image">
-        <img
-          src={
-            imagePath
-          }
-          alt={name}
-        />
-      </div>
+    <div className="picture-card">
+      <div class="card">
+        <div class="card-image">
+          <img
+            src={
+              imagePath
+            }
+            alt={name}
+          />
+        </div>
 
-      {name ? (
-        <div class="card-content">
-          <div class="content">
-            <p class="title is-5 has-text-white">{name}</p>
-            {showSubtitle ? (
-              <p class="subtitle is-6 has-text-light">{subtitle}</p>
-            ) : null}
-          </div>
-        </div>) : null}
-    </div>
+        {name ? (
+          <div class="card-content">
+            <div class="content">
+              <p class="title is-5 has-text-white">{name}</p>
+              {showSubtitle ? (
+                <p class="subtitle is-6 has-text-light">{subtitle}</p>
+              ) : null}
+            </div>
+          </div>) : null}
+      </div>
+    </div >
   );
 }

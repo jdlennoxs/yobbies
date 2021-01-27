@@ -41,8 +41,8 @@ export default function NavBar() {
             <a className="navbar-item">Awards</a>
           </Link>
 
-          <Link href="/stats">
-            <a className="navbar-item">Stats</a>
+          <Link href="/statistics">
+            <a className="navbar-item">Statistics</a>
           </Link>
         </div>
       </div>

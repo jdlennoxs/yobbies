@@ -102,7 +102,8 @@ a {
   height: 260px;
 }
 
-.card-content {
+.picture-card {
+  .card-content {
   display: inline-block;
   padding: 0.5rem;
   width: 100%;
@@ -116,6 +117,28 @@ a {
     .card-content {
       display: none;
       transition: 0.5s;
+    }
+  }
+}
+}
+
+
+.stat-card {
+  .card {
+    background-color: rgba($dark, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    .card-content {
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-footer {
+      border: none;
+      position: absolute;
+      bottom: 0;
     }
   }
 }

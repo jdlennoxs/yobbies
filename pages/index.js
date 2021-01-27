@@ -49,7 +49,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="column is-one-third">
-              <Link href="/state">
+              <Link href="/statistics">
                 <div className="box has-background-dark">
                   <a className="content has-text-centered">
                     <h2 className="m-2 gradient-text">Statistics</h2>
