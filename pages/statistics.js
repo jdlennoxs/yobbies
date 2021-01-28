@@ -4,7 +4,6 @@ import actorsdata from "../data/actors.json"
 import moviesdata from "../data/movies.json";
 import StatCard from "../components/stat-card";
 import { getLanguages, getGenres, getFemaleDirectors, getAverageBudget, getAverageRevenue, getAverageRating, getOldestReleaseDate } from "../helpers/data-helpers";
-import { ResponsiveLine } from "@nivo/line"
 
 export default function Movies({ movies, actors }) {
     return (
@@ -42,7 +41,7 @@ export default function Movies({ movies, actors }) {
                     <StatCard title="Oldest release" value={getOldestReleaseDate(movies)} />
                 </div>
             </div>
-            <div style={{ height: "200px" }}>
+            {/* <div style={{ height: "200px" }}>
                 <ResponsiveLine
                     yScale={{
                         type: 'time',
@@ -70,7 +69,7 @@ export default function Movies({ movies, actors }) {
                         }
                     ]}
                 />
-            </div>
+            </div> */}
         </div>
     );
 }
