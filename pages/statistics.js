@@ -26,10 +26,10 @@ export default function Movies({ movies, actors }) {
                     <StatCard title="Female directors" value={getFemaleDirectors(movies).size} />
                 </div>
                 <div className="column is-one-third-tablet">
-                    <StatCard title="Average budget" value={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(getAverageBudget(movies))} />
+                    <StatCard title="Average budget" value={`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(getAverageBudget(movies) / 1000000)}m`} />
                 </div>
                 <div className="column is-one-third-tablet">
-                    <StatCard title="Average revenue" value={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(getAverageRevenue(movies))} />
+                    <StatCard title="Average revenue" value={`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(getAverageRevenue(movies) / 1000000)}m`} />
                 </div>
                 <div className="column is-one-third-tablet">
                     <StatCard title="Total actors" value={Object.keys(actors).length} />
