@@ -1,7 +1,6 @@
 {
-    "name": "The Tilda-Julianna award",
-    "description": "",
-    "type": "film",
-    "nominees": []
-  }
-  
+  "name": "The Tilda-Julianne award",
+  "description": "Awarded to the yob who submits the best role for Tilda or Julianne",
+  "type": "film",
+  "nominees": []
+}

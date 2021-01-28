@@ -1,7 +1,6 @@
 {
-    "name": "Best film link",
-    "description": "",
-    "type": "yob",
-    "nominees": []
-  }
-  
+  "name": "Best film link",
+  "description": "Awarded to the yob who submits the best film link",
+  "type": "yob",
+  "nominees": []
+}
