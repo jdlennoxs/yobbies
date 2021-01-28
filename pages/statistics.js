@@ -4,11 +4,12 @@ import actorsdata from "../data/actors.json"
 import moviesdata from "../data/movies.json";
 import StatCard from "../components/stat-card";
 import { getLanguages, getGenres, getFemaleDirectors, getAverageBudget, getAverageRevenue, getAverageRating, getOldestReleaseDate } from "../helpers/data-helpers";
+import { ResponsiveLine } from "@nivo/line"
 
 export default function Movies({ movies, actors }) {
     return (
         <div className="narrow-container p-6 my-6 ">
-            <div className="content">
+            <div className="content block">
                 <h1 className="has-text-white">The Statistics</h1>
             </div>
 
@@ -40,6 +41,35 @@ export default function Movies({ movies, actors }) {
                 <div className="column is-one-third-tablet">
                     <StatCard title="Oldest release" value={getOldestReleaseDate(movies)} />
                 </div>
+            </div>
+            <div style={{ height: "200px" }}>
+                <ResponsiveLine
+                    yScale={{
+                        type: 'time',
+                        format: "%Y",
+                        precision: "year"
+                    }}
+                    yFormat="time:%Y"
+                    data={[
+                        {
+                            "id": "Jack Scott",
+                            "data": [
+                                {
+                                    "x": 4,
+                                    "y": "1967"
+                                },
+                                {
+                                    "x": 6,
+                                    "y": "2020"
+                                },
+                                {
+                                    "x": 7,
+                                    "y": "1999"
+                                },
+                            ]
+                        }
+                    ]}
+                />
             </div>
         </div>
     );
