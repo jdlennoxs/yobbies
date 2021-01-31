@@ -1,10 +1,19 @@
 import React from "react";
 
-export default function Detail({ director, details }) {
+export default function Detail({ director, details, yob }) {
   return (
     <div className="block content is-small">
       <div className="table-container">
         <table className="table is-narrow has-background-dark">
+          <tr>
+            <td>
+              <p className="has-text-white">Chosen by: </p>
+            </td>
+            <td>
+              <p className="has-text-white">{yob.name}</p>
+            </td>
+          </tr>
+
           <tr>
             <td>
               <p className="has-text-white">Directed by: </p>

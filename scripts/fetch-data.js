@@ -31,6 +31,7 @@ const fetchMovieDetails = async () => {
       details,
       cast: credits.cast,
       director: director,
+      chosen_by: movie.chosen_by,
     };
     credits.cast.forEach(
       ({

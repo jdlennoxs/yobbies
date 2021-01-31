@@ -11,6 +11,8 @@ $table-cell-border: 0px;
 $card-color: $link;
 $card-background-color: #000;
 $card-content-padding: 0.5rem;
+$navbar-item-hover-color: $dark;
+$navbar-item-active-color: $gold-dark;
 
 @import "bulma/bulma";
 html,

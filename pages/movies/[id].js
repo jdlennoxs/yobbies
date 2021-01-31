@@ -3,8 +3,9 @@ import Detail from "../../components/detail";
 import MovieCard from "../../components/movie-card";
 import ActorCard from "../../components/actor-card";
 import moviesdata from "../../data/movies.json";
+import yobsdata from "../../data/yobs.json";
 
-export default function MoviePage({ details, director, cast }) {
+export default function MoviePage({ details, director, cast, yob }) {
   //   const detailsMap = {
   //     budget,
   //     genres,
@@ -51,7 +52,7 @@ export default function MoviePage({ details, director, cast }) {
                   <p class="subtitle is-5 has-text-white">Viewer Rating</p>
                 </div>
 
-                <Detail director={director} details={details} />
+                <Detail director={director} details={details} yob={yob} />
               </div>
             </div>
           </div>
@@ -102,11 +103,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const movie = moviesdata[context.params.id];
+  const yobs = yobsdata;
   return {
     props: {
       details: movie.details,
       director: movie.director,
       cast: movie.cast,
+      yob: yobs[movie.chosen_by],
     },
   };
 }
