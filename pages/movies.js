@@ -9,9 +9,9 @@ export default function Movies({ movies }) {
       <div className="content">
         <h1 className="has-text-white">The Movies</h1>
       </div>
-      <div className="columns is-multiline">
+      <div className="columns is-multiline is-mobile">
         {movies.map((movie) => (
-          <div className="column is-one-fifth-desktop is-one-third-tablet">
+          <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
             <Link href={`/movies/${movie.slug}`}>
               <a className="poster-link">
                 <MovieCard path={movie.details.poster_path} />
