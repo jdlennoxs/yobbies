@@ -10,7 +10,7 @@ export default function Detail({ director, details, yob }) {
               <p className="has-text-white">Chosen by: </p>
             </td>
             <td>
-              <p className="has-text-white">{yob.name}</p>
+              <p className="has-text-white">{yob.name || "all"}</p>
             </td>
           </tr>
 
