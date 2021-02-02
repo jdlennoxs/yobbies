@@ -75,3 +75,15 @@ export const getOldestReleaseDate = (movies) => {
     })
     return oldestDate.getFullYear()
 }
+
+export const getFilmsByYear = ({ movies, yobs }) => {
+    return Object.keys(yobs).map(yob => {
+        const name = yobs[yob].name
+        const films = Object.values(movies).filter(m => m.chosen_by === yob)
+        const data = films.map(f => ({ x: f.order, y: parseInt(f.details.release_date.substring(0, 4)) }))
+        return {
+            id: name,
+            data,
+        }
+    })
+}

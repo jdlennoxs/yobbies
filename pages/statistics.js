@@ -2,10 +2,22 @@ import Link from "next/link";
 import metadata from "../data/metadata.json";
 import actorsdata from "../data/actors.json"
 import moviesdata from "../data/movies.json";
+import yobsdata from "../data/yobs.json";
 import StatCard from "../components/stat-card";
-import { getLanguages, getGenres, getFemaleDirectors, getAverageBudget, getAverageRevenue, getAverageRating, getOldestReleaseDate } from "../helpers/data-helpers";
+import {
+    getLanguages,
+    getGenres,
+    getFemaleDirectors,
+    getAverageBudget,
+    getAverageRevenue,
+    getAverageRating,
+    getOldestReleaseDate,
+    getFilmsByYear
+} from "../helpers/data-helpers";
+import Scatter from "../components/scatter";
 
-export default function Movies({ movies, actors }) {
+
+export default function Movies({ movies, actors, yobs }) {
     return (
         <div className="narrow-container p-6 my-6 ">
             <div className="content block">
@@ -41,35 +53,7 @@ export default function Movies({ movies, actors }) {
                     <StatCard title="Oldest release" value={getOldestReleaseDate(movies)} />
                 </div>
             </div>
-            {/* <div style={{ height: "200px" }}>
-                <ResponsiveLine
-                    yScale={{
-                        type: 'time',
-                        format: "%Y",
-                        precision: "year"
-                    }}
-                    yFormat="time:%Y"
-                    data={[
-                        {
-                            "id": "Jack Scott",
-                            "data": [
-                                {
-                                    "x": 4,
-                                    "y": "1967"
-                                },
-                                {
-                                    "x": 6,
-                                    "y": "2020"
-                                },
-                                {
-                                    "x": 7,
-                                    "y": "1999"
-                                },
-                            ]
-                        }
-                    ]}
-                />
-            </div> */}
+            <Scatter data={getFilmsByYear({ movies, yobs })} />
         </div>
     );
 }
@@ -77,12 +61,12 @@ export default function Movies({ movies, actors }) {
 export async function getStaticProps() {
     const movies = moviesdata;
     const actors = actorsdata;
-    // const yobs = yobsdata;
+    const yobs = yobsdata;
     return {
         props: {
             movies,
             actors,
-            // yobs
+            yobs
         },
     };
     // will be passed to the page component as props
