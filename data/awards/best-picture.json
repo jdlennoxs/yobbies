@@ -2,5 +2,30 @@
   "name": "Best picture",
   "description": "Awarded to the overall best picture",
   "type": "film",
-  "nominees": []
+  "nominees": [
+    "clouds-of-sils-maria",
+    "brick",
+    "faster-pussycat-kill-kill",
+    "eurovision-song-contest-the-story-of-fire-saga",
+    "the-souvenir",
+    "big-night",
+    "ma",
+    "the-farewell",
+    "calibre",
+    "mommy",
+    "magic",
+    "the-bone-collector",
+    "funny-games",
+    "amadeus",
+    "the-boys-in-the-band",
+    "widows",
+    "under-the-skin",
+    "only-yesterday",
+    "force-majeure",
+    "a-fantastic-woman",
+    "holy-motors",
+    "november",
+    "mustang",
+    "mommy"
+  ]
 }

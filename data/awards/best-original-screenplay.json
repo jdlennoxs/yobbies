@@ -1,7 +1,16 @@
 {
-    "name": "Best original screenplay",
-    "description": "Awarded to the best picture created originally for film",
-    "type": "film",
-    "nominees": ["clouds-of-sils-maria","brick","faster-pussycat-kill-kill","eurovision-song-contest-the-story-of-fire-saga","the-souvenir","big-night","ma","the-farewell","calibre"]
-  }
-  
+  "name": "Best original screenplay",
+  "description": "Awarded to the best picture created originally for film",
+  "type": "film",
+  "nominees": [
+    "clouds-of-sils-maria",
+    "brick",
+    "faster-pussycat-kill-kill",
+    "eurovision-song-contest-the-story-of-fire-saga",
+    "the-souvenir",
+    "big-night",
+    "ma",
+    "the-farewell",
+    "calibre"
+  ]
+}
