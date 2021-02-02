@@ -19,7 +19,7 @@ import Scatter from "../components/scatter";
 
 export default function Movies({ movies, actors, yobs }) {
     return (
-        <div className="narrow-container p-6 my-6 ">
+        <div className="container p-3 my-6 ">
             <div className="content block">
                 <h1 className="has-text-white">The Statistics</h1>
             </div>

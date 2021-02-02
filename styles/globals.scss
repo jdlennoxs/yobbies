@@ -104,24 +104,28 @@ a {
   height: 260px;
 }
 
-.picture-card {
-  .card-content {
-  display: inline-block;
-  padding: 0.5rem;
-  width: 100%;
-  background-color: rgba($dark, 0.5);
-  position: absolute;
-  bottom: 0px;
+.card-image-full {
+  display: block;
 }
 
-.card {
-  &:hover {
+.picture-card {
     .card-content {
-      display: none;
-      transition: 0.5s;
+    display: inline-block;
+    padding: 0.5rem;
+    width: 100%;
+    background-color: rgba($dark, 0.5);
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .card {
+    &:hover {
+      .card-content {
+        display: none;
+        transition: 0.5s;
+      }
     }
   }
-}
 }
 
 

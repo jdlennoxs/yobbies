@@ -1,4 +1,4 @@
-export default function ActorCard({ name, subtitle, image, type, showSubtitle }) {
+export default function ActorCard({ name, subtitle, image, type, showSubtitle, unfix }) {
   let imagePath
   if (type === "actor" || type === "yob") {
     imagePath = image
@@ -13,22 +13,30 @@ export default function ActorCard({ name, subtitle, image, type, showSubtitle })
 
   return (
     <div className="picture-card">
-      <div class="card">
-        <div class="card-image">
+      <div className="card">
+        {unfix ? (<div className="card-image-full">
           <img
             src={
               imagePath
             }
             alt={name}
           />
-        </div>
+        </div>) : (
+            <div className="card-image">
+              <img
+                src={
+                  imagePath
+                }
+                alt={name}
+              />
+            </div>)}
 
         {name ? (
-          <div class="card-content">
-            <div class="content">
-              <p class="title is-5 has-text-white">{name}</p>
+          <div className="card-content">
+            <div className="content">
+              <p className="title is-5 has-text-white">{name}</p>
               {showSubtitle ? (
-                <p class="subtitle is-6 has-text-light">{subtitle}</p>
+                <p className="subtitle is-6 has-text-light">{subtitle}</p>
               ) : null}
             </div>
           </div>) : null}

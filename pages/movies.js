@@ -5,7 +5,7 @@ import moviesdata from "../data/movies.json";
 
 export default function Movies({ movies }) {
   return (
-    <div className="narrow-container p-6 my-6 ">
+    <div className="container p-3 my-6 ">
       <div className="content">
         <h1 className="has-text-white">The Movies</h1>
       </div>

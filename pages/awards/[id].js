@@ -11,7 +11,7 @@ const POSTS_PATH = path.join(process.cwd(), "data/awards");
 export default function AwardsPage({ award, movies, actors, yobs }) {
   return (
 
-    <div className="narrow-container p-6 my-6 ">
+    <div className="container p-3 my-6 ">
       <div className="py-6 content">
         <h1 className="title is-1 has-text-white">{award.name}</h1>
         <p className="subtitle is-3">{award.description}</p>
@@ -24,7 +24,7 @@ export default function AwardsPage({ award, movies, actors, yobs }) {
                   const film = movies[nominee]
 
                   return (<div className="column is-one-fifth-tablet is-half-mobile">
-                    <ActorCard type={award.type} title={film.details.title} image={film.details.poster_path} />
+                    <ActorCard unfix type={award.type} title={film.details.title} image={film.details.poster_path} />
                   </div>
                   )
                 }

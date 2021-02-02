@@ -12,7 +12,7 @@ export default function Awards({ awards, movies, yobs, actors }) {
   const lookupActor = (id) => actors[id].name
   const lookupYobs = (id) => yobs[id].name
   return (
-    <div className="narrow-container p-6 my-6 ">
+    <div className="container p-3 my-6 ">
       <div className="content">
         <h1 className="has-text-white">The Awards</h1>
       </div>
