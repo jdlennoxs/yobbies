@@ -1,6 +1,6 @@
 export default function ActorCard({ name, subtitle, image, type, showSubtitle, unfix }) {
   let imagePath
-  if (type === "actor" || type === "yob") {
+  if (type === "actor") {
     imagePath = image
       ? `https://image.tmdb.org/t/p/w342/${image}`
       : "/placeholder-person.png"
@@ -9,6 +9,8 @@ export default function ActorCard({ name, subtitle, image, type, showSubtitle, u
       ?
       `https://image.tmdb.org/t/p/w342/${image}` :
       image
+  } else {
+    imagePath = image ? image : "/placeholder-person.png"
   }
 
   return (

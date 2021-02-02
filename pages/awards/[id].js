@@ -41,7 +41,7 @@ export default function AwardsPage({ award, movies, actors, yobs }) {
                   const yob = yobs[nominee]
 
                   return (<div className="column is-one-fifth-tablet is-half-mobile">
-                    <ActorCard type={award.type} name={yob.name} image={""} />
+                    <ActorCard type={award.type} name={yob.name} image={yob.image || ""} />
                   </div>
                   )
                 }
