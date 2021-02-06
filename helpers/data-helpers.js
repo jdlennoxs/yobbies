@@ -1,3 +1,5 @@
+import codesMap from "../data/countryCodes.json"
+
 export const getLanguages = (movies) => {
     const languages = new Set()
     Object.keys(movies).forEach((movie) => {
@@ -80,10 +82,43 @@ export const getFilmsByYear = ({ movies, yobs }) => {
     return Object.keys(yobs).map(yob => {
         const name = yobs[yob].name
         const films = Object.values(movies).filter(m => m.chosen_by === yob)
-        const data = films.map(f => ({ x: f.order, y: parseInt(f.details.release_date.substring(0, 4)) }))
+        const data = films.map(f => ({ x: f.order, title: f.details.title, y: parseInt(f.details.release_date.substring(0, 4)) }))
         return {
             id: name,
             data,
         }
     })
+}
+
+export const getFilmsPerCountry = ({ movies }) => {
+    const countries = []
+    Object.keys(movies).map(movie => {
+        movies[movie].details.production_countries.forEach((c) => {
+            const iso = codesMap[c.iso_3166_1]
+            const existing = countries.find(n => n.id === iso)
+            if (existing) {
+                existing.value += 1
+            } else {
+                countries.push({ id: iso, value: 1 })
+            }
+        })
+    })
+    return countries
+}
+
+
+export const getFilmsPerGenre = ({ movies }) => {
+    const coll = []
+    Object.keys(movies).map(movie => {
+        movies[movie].details.genres.forEach((g) => {
+            const existing = coll.find(n => n.name === g.name)
+            if (existing) {
+                existing.count += 1
+            } else {
+                coll.push({ name: g.name, count: 1 })
+            }
+        })
+    })
+    const smoothed = coll.map(g => ({ ...g, total: Math.log(g.count) + 1 }))
+    return smoothed
 }

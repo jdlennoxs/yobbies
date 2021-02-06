@@ -12,9 +12,13 @@ import {
     getAverageRevenue,
     getAverageRating,
     getOldestReleaseDate,
-    getFilmsByYear
+    getFilmsByYear,
+    getFilmsPerCountry,
+    getFilmsPerGenre
 } from "../helpers/data-helpers";
 import Scatter from "../components/scatter";
+import Geo from "../components/geo";
+import Radar from "../components/radar";
 
 
 export default function Movies({ movies, actors, yobs }) {
@@ -24,7 +28,7 @@ export default function Movies({ movies, actors, yobs }) {
                 <h1 className="has-text-white">The Statistics</h1>
             </div>
 
-            <div className="columns is-multiline">
+            <div className="columns is-multiline block">
                 <div className="column is-one-third-tablet">
                     <StatCard title="Number of films" value={Object.keys(movies).length} />
                 </div>
@@ -53,7 +57,17 @@ export default function Movies({ movies, actors, yobs }) {
                     <StatCard title="Oldest release" value={getOldestReleaseDate(movies)} />
                 </div>
             </div>
-            <Scatter data={getFilmsByYear({ movies, yobs })} />
+
+            <div className="content block">
+                <h3 className="has-text-white">Selection by Release Year</h3>
+                <Scatter data={getFilmsByYear({ movies, yobs })} />
+
+                <h3 className="has-text-white">Pictures by Country</h3>
+                <Geo data={getFilmsPerCountry({ movies })} />
+
+                <h3 className="has-text-white">Genre Count</h3>
+                <Radar data={getFilmsPerGenre({ movies })} />
+            </div>
         </div>
     );
 }

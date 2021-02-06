@@ -9,9 +9,12 @@ export default function Scatter({ data }) {
                     min: 1950,
                     max: 2020,
                 }}
-                margin={{ top: 20, right: 20, bottom: 60, left: 80 }}
+                margin={{ top: 20, right: 20, bottom: 50, left: 60 }}
                 colors={{
                     scheme: "paired"
+                }}
+                theme={{
+                    textColor: "#ffffff"
                 }}
                 axisLeft={{
                     orient: 'left',
@@ -20,7 +23,7 @@ export default function Scatter({ data }) {
                     tickRotation: 0,
                     legend: 'Release Year',
                     legendPosition: 'middle',
-                    legendOffset: -60
+                    legendOffset: -50
                 }}
                 axisBottom={{
                     orient: 'bottom',
@@ -29,8 +32,25 @@ export default function Scatter({ data }) {
                     tickRotation: 0,
                     legend: 'Film',
                     legendPosition: 'middle',
-                    legendOffset: 46
+                    legendOffset: 40
                 }}
+                tooltip={({ node }) => (
+                    <div
+                        style={{
+                            color: node.style.color,
+                            background: '#333',
+                            padding: '12px 16px',
+                        }}
+                    >
+                        <strong style={{ color: "#fff" }}>
+                            {node.data.serieId}
+                        </strong>
+                        <br />
+                        {`${node.data.title}`}
+                        <br />
+                        {`${node.data.formattedY}`}
+                    </div>
+                )}
                 data={data}
             />
         </div>
