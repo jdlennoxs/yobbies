@@ -38,7 +38,7 @@ export default function Scatter({ data }) {
                     <div
                         style={{
                             color: node.style.color,
-                            background: '#333',
+                            background: '#111',
                             padding: '12px 16px',
                         }}
                     >
