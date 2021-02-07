@@ -7,7 +7,7 @@ export default function Scatter({ data }) {
                 yScale={{
                     type: 'linear',
                     min: 1950,
-                    max: 2020,
+                    max: 2021,
                 }}
                 margin={{ top: 20, right: 20, bottom: 50, left: 60 }}
                 colors={{
@@ -49,9 +49,12 @@ export default function Scatter({ data }) {
                         {`${node.data.title}`}
                         <br />
                         {`${node.data.formattedY}`}
+                        <br />
+                        {`${node.data.z} minutes`}
                     </div>
                 )}
                 data={data}
+                nodeSize={{ key: "z", values: [80, 160], sizes: [10, 40] }}
             />
         </div>
     )

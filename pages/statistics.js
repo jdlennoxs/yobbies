@@ -14,14 +14,17 @@ import {
     getOldestReleaseDate,
     getFilmsByYear,
     getFilmsPerCountry,
-    getFilmsPerGenre
+    getFilmsPerGenre,
+    getActorsInMultipleFilms
 } from "../helpers/data-helpers";
 import Scatter from "../components/scatter";
 import Geo from "../components/geo";
 import Radar from "../components/radar";
+import ActorCard from "../components/actor-card";
 
 
 export default function Movies({ movies, actors, yobs }) {
+    const yobNames = Object.keys(yobs).map(y => yobs[y].name)
     return (
         <div className="container p-3 my-6 ">
             <div className="content block">
@@ -66,7 +69,18 @@ export default function Movies({ movies, actors, yobs }) {
                 <Geo data={getFilmsPerCountry({ movies })} />
 
                 <h3 className="has-text-white">Genre Count</h3>
-                <Radar data={getFilmsPerGenre({ movies })} />
+                <Radar data={getFilmsPerGenre({ movies, yobs, yobNames })} keys={yobNames.concat("Total")} />
+
+                <h3 className="pt-6 has-text-white">Film Links</h3>
+                <div className="columns is-multiline is-mobile">
+                    <>
+                        {getActorsInMultipleFilms({ actors, movies }).map((actor) => (
+                            <div class="column is-one-fifth-tablet is-half-mobile">
+                                <ActorCard name={actor.name} subtitle={actor.movies} image={actor.profile_path} type="actor" showSubtitle />
+                            </div>
+                        ))}
+                    </>
+                </div>
             </div>
         </div>
     );

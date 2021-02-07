@@ -57,7 +57,8 @@ const fetchMovieDetails = async () => {
             movies: [movie.slug],
           };
         } else {
-          actors[actorSlug].movies.push(movie.slug);
+          const unique = new Set(actors[actorSlug].movies.concat(movie.slug))
+          actors[actorSlug].movies = [...unique]
         }
       }
     );

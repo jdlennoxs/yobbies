@@ -82,7 +82,7 @@ export const getFilmsByYear = ({ movies, yobs }) => {
     return Object.keys(yobs).map(yob => {
         const name = yobs[yob].name
         const films = Object.values(movies).filter(m => m.chosen_by === yob)
-        const data = films.map(f => ({ x: f.order, title: f.details.title, y: parseInt(f.details.release_date.substring(0, 4)) }))
+        const data = films.map(f => ({ x: f.order, title: f.details.title, y: parseInt(f.details.release_date.substring(0, 4)), z: f.details.runtime }))
         return {
             id: name,
             data,
@@ -107,18 +107,35 @@ export const getFilmsPerCountry = ({ movies }) => {
 }
 
 
-export const getFilmsPerGenre = ({ movies }) => {
-    const coll = []
-    Object.keys(movies).map(movie => {
+export const getFilmsPerGenre = ({ movies, yobs, yobNames }) => {
+    const collection = []
+
+    Object.keys(movies).forEach(movie => {
         movies[movie].details.genres.forEach((g) => {
-            const existing = coll.find(n => n.name === g.name)
+            const existing = collection.find(n => n.genre === g.name)
             if (existing) {
-                existing.count += 1
+                existing[yobs[movies[movie].chosen_by].name] += 1
+                existing.Total += 1
             } else {
-                coll.push({ name: g.name, count: 1 })
+                const empty = {}
+                yobNames.forEach(n => {
+                    empty[n] = 1
+                })
+                empty[yobs[movies[movie].chosen_by].name] += 1
+                collection.push({ genre: g.name, Total: 2, ...empty })
             }
         })
     })
-    const smoothed = coll.map(g => ({ ...g, total: Math.log(g.count) + 1 }))
-    return smoothed
+    return collection
+}
+
+export const getActorsInMultipleFilms = ({ actors, movies }) => {
+    const multi = []
+    Object.keys(actors).forEach(actor => {
+        if (actors[actor].movies.length > 1) {
+            const movieNames = actors[actor].movies.map(m => movies[m].details.title)
+            multi.push({ name: actors[actor].name, movies: movieNames.join(", "), profile_path: actors[actor].profile_path })
+        }
+    })
+    return multi
 }
