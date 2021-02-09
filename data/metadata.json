@@ -160,5 +160,11 @@
         "slug": "tommy",
         "chosen_by": "5",
         "order": "27"
+    },
+    {
+        "id": "605499",
+        "slug": "monsoon",
+        "chosen_by": "7",
+        "order": "28"
     }
 ]
