@@ -69,7 +69,7 @@ export default function Movies({ movies, actors, yobs }) {
                 <Geo data={getFilmsPerCountry({ movies })} />
 
                 <h3 className="has-text-white">Genre Count</h3>
-                <Radar data={getFilmsPerGenre({ movies, yobs, yobNames })} keys={yobNames.concat("Total")} />
+                <Radar data={getFilmsPerGenre({ movies, yobs, yobNames })} keys={yobNames} />
 
                 <h3 className="pt-6 has-text-white">Film Links</h3>
                 <div className="columns is-multiline is-mobile">
@@ -81,6 +81,16 @@ export default function Movies({ movies, actors, yobs }) {
                         ))}
                     </>
                 </div>
+                <h3 className="pt-6 has-text-white">Top Rated Films</h3>
+                <ul>
+                    {Object.keys(movies).map(m => ({ title: movies[m].details.title, vote: movies[m].details.vote_average })).sort((a, b) => a.vote < b.vote).slice(0, 10).map(m =>
+                    (<li>
+                        <h5 className="has-text-white">
+                            {m.title} - {m.vote}
+                        </h5>
+                    </li>)
+                    )}
+                </ul>
             </div>
         </div>
     );

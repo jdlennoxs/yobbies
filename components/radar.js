@@ -3,7 +3,8 @@ import { ResponsiveRadar } from '@nivo/radar'
 import { useState } from "react";
 
 export default function Radar({ data, keys }) {
-    const [active, setActive] = useState(["Total"])
+    const [active, setActive] = useState(keys)
+
     const filterYob = (yob) => {
         if (active.includes(yob)) {
             setActive(active.filter(a => a !== yob))
