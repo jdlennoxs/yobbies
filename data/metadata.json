@@ -166,5 +166,11 @@
         "slug": "monsoon",
         "chosen_by": "7",
         "order": "28"
+    },
+    {
+        "id": "547017",
+        "slug": "shirley",
+        "chosen_by": "9",
+        "order": "29"
     }
 ]
