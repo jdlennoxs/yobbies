@@ -30,9 +30,9 @@ export default function MoviePage({ details, director, cast, yob }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="description" content={details.tagline} />
+        <meta name="description" content={details.overview.replace(/&amp;/g, "&")} />
         <meta property="og:title" content={details.title} key="ogtitle" />
-        <meta property="og:description" content={details.tagline} key="ogdesc" />
+        <meta property="og:description" content={details.overview.replace(/&amp;/g, "&")} key="ogdesc" />
         <meta property="og:image" content={getPath(details.poster_path)} key="ogimage" />
         <title>{details.title}</title>
       </Head>
