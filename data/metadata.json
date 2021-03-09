@@ -174,15 +174,21 @@
         "order": "29"
     },
     {
-	"id": "345940",
-	"slug": "the-meg",
-	"chosen_by": "8",
-	"order": "30"
+        "id": "345940",
+        "slug": "the-meg",
+        "chosen_by": "8",
+        "order": "30"
     },
     {
-	"id": "10868",
-	"slug": "the-accused",	
-	"chosen_by": "10",
-	"order": "31"
+        "id": "10868",
+        "slug": "the-accused",
+        "chosen_by": "10",
+        "order": "31"
+    },
+    {
+        "id": "382883",
+        "slug": "shepherds-and-butchers",
+        "chosen_by": "11",
+        "order": "32"
     }
 ]
