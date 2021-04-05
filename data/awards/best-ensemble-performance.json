@@ -2,6 +2,11 @@
     "name": "Best ensemble performance",
     "description": "Awarded to the picture featuring the best overall performance from the entire cast",
     "type": "film",
-    "nominees": []
+    "nominees": [
+      "big-night",
+      "mustang",
+      "the-farewell",
+      "widows"
+    ]
   }
   

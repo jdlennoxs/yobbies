@@ -1,6 +1,12 @@
 {
   "name": "Best inanimate object",
   "description": "Awarded to the picture with the best inanimate object",
-  "type": "film",
-  "nominees": []
+  "type": "actor",
+  "nominees": [
+    "Bag of dog blood",
+    "The Kratt",
+    "The car that appears out of nowhere",
+    "Little Nai Nai's Dawn the jockey hat",
+    "Fake penis"
+  ]
 }

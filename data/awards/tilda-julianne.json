@@ -1,6 +1,11 @@
 {
   "name": "The Tilda-Julianne award",
   "description": "Awarded to the yob who submits the best role for Tilda or Julianne",
-  "type": "film",
-  "nominees": []
+  "type": "actor",
+  "nominees": [
+    "Julianne and Tilda as Peter and Paul",
+    "Tilda as The Female",
+    "Tilda in all of Denis Lavant's roles",
+    "Tilda Swinton doing 'play Ja Ja Ding Dong!'"
+  ]
 }

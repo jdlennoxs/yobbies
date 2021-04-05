@@ -44,7 +44,7 @@ export default function Awards({ awards, movies, yobs, actors }) {
                       {award.type === "actor" && award.nominees ? (
                         <>
                           {award.nominees.map((n) => (
-                            <div className="info-tag">{lookupActor(n.name)}</div>
+                            <div className="info-tag">{n}</div>//{lookupActor(n.name)}</div>
                           ))}
                         </>
                       ) : null}

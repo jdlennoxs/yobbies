@@ -1,7 +1,13 @@
 {
     "name": "Best single line of dialogue",
     "description": "Awarded to the picture with the best single line of dialogue",
-    "type": "film",
-    "nominees": []
+    "type": "actor",
+    "nominees": [
+      "How's our baby, Luce?",
+      "These chairs touched our assholes, aren't they disgusting?",
+      "Don’t make me drink alone",
+      "Look, spring onions. Maybe I picked these ones myself",
+      "Paint the red! Paint the red! You're driving me crazy. Paint the red!"
+    ]
   }
   

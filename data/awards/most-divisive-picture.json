@@ -2,6 +2,6 @@
     "name": "Most divisive picture",
     "description": "Awarded to the picture that split the room",
     "type": "film",
-    "nominees": []
+    "nominees": ["widows", "brick", "mommy", "holy-motors"]
   }
   

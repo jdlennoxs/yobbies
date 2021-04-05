@@ -1,7 +1,7 @@
 {
     "name": "Best original song",
     "description": "Awarded to the picture with the best original song",
-    "type": "film",
-    "nominees": []
+    "type": "actor",
+    "nominees": ["Husavik", "Periodico de Ayer", "Ja Ja Ding Dong", "On Ne Change Pas"]
   }
   

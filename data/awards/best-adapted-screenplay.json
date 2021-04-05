@@ -3,16 +3,10 @@
   "description": "Awarded to the best picture adapted from an existing piece of work",
   "type": "film",
   "nominees": [
-    "magic",
-    "the-bone-collector",
     "funny-games",
     "amadeus",
-    "the-boys-in-the-band",
     "widows",
     "under-the-skin",
-    "tommy",
-    "shirley",
-    "the-meg",
-    "shepherds-and-butchers"
+    "shirley"
   ]
 }

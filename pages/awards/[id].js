@@ -29,12 +29,15 @@ export default function AwardsPage({ award, movies, actors, yobs }) {
                   )
                 }
                 if (award.type === "actor") {
-                  const actor = actors[nominee.name]
-                  const film = movies[nominee.film]
+                  // const actor = actors[nominee.name]
+                  // const film = movies[nominee.film]
 
+                  // return (<div className="column is-one-fifth-tablet is-half-mobile">
+                  //   <ActorCard type={award.type} name={actor.name} subtitle={film.details.title} image={actor.profile_path} showSubtitle />
+                  // </div>
                   return (<div className="column is-one-fifth-tablet is-half-mobile">
-                    <ActorCard type={award.type} name={actor.name} subtitle={film.details.title} image={actor.profile_path} showSubtitle />
-                  </div>
+                  <ActorCard type={award.type} name={nominee}/>
+                </div>
                   )
                 }
                 if (award.type === "yob") {
