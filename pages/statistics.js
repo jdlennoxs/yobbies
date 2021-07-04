@@ -15,7 +15,8 @@ import {
     getFilmsByYear,
     getFilmsPerCountry,
     getFilmsPerGenre,
-    getActorsInMultipleFilms
+    getActorsInMultipleFilms,
+    getAverageRuntime
 } from "../helpers/data-helpers";
 import Scatter from "../components/scatter";
 import Geo from "../components/geo";

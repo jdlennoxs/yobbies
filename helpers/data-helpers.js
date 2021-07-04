@@ -55,6 +55,18 @@ export const getAverageRevenue = (movies) => {
     return totalRevenue / count
 }
 
+export const getAverageRuntime = (movies) => {
+    let totalRuntime = 0
+    let count = 0
+    Object.keys(movies).forEach((movie) => {
+        if (movies[movie].details.runtime > 0) {
+            totalRuntime += movies[movie].details.runtime
+            count++
+        }
+    })
+    return totalRuntime / count
+}
+
 
 export const getAverageRating = (movies) => {
     let totalRating = 0
