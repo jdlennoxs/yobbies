@@ -10,7 +10,7 @@ export default function Movies({ movies }) {
         <h1 className="has-text-white">The Movies</h1>
       </div>
       <div className="columns is-multiline is-mobile">
-        {movies.reverse().map((movie) => (
+        {movies.map((movie) => (
           <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
             <Link href={`/movies/${movie.slug}`}>
               <a className="poster-link">
@@ -32,7 +32,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      movies,
+      movies: movies.reverse(),
     },
   };
   // will be passed to the page component as props
