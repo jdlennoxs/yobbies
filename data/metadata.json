@@ -278,5 +278,13 @@
     "chosen_by": "5",
     "order": "39",
     "theme": "coming of age"
+  },
+  {
+    "season": "2",
+    "id": "256040",
+    "slug": "baahubali",
+    "chosen_by": "6",
+    "order": "40",
+    "theme": "epic"
   }
 ]
