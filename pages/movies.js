@@ -1,3 +1,4 @@
+import { groupBy } from "lodash";
 import Link from "next/link";
 import MovieCard from "../components/movie-card";
 import metadata from "../data/metadata.json";
@@ -9,8 +10,25 @@ export default function Movies({ movies }) {
       <div className="content">
         <h1 className="has-text-white">The Movies</h1>
       </div>
+      <div className="content">
+        <h2 className="has-text-white">Season 2</h2>
+      </div>
       <div className="columns is-multiline is-mobile">
-        {movies.map((movie) => (
+        {movies[2].map((movie) => (
+          <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
+            <Link href={`/movies/${movie.slug}`}>
+              <a className="poster-link">
+                <MovieCard path={movie.details.poster_path} />
+              </a>
+            </Link>
+          </div>
+        ))}
+      </div>
+      <div className="content">
+        <h2 className="has-text-white">Season 1</h2>
+      </div>
+      <div className="columns is-multiline is-mobile">
+        {movies[1].map((movie) => (
           <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
             <Link href={`/movies/${movie.slug}`}>
               <a className="poster-link">
@@ -27,12 +45,16 @@ export default function Movies({ movies }) {
 export async function getStaticProps() {
   let movies = [];
   for (const movie of metadata) {
-    movies.push({ ...movie, details: moviesdata[movie.slug].details });
+    movies.push({
+      ...movie,
+      details: moviesdata[movie.slug].details,
+      season: movie.season,
+    });
   }
 
   return {
     props: {
-      movies: movies.reverse(),
+      movies: groupBy(movies.reverse(), "season"),
     },
   };
   // will be passed to the page component as props
