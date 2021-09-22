@@ -286,5 +286,13 @@
     "chosen_by": "6",
     "order": "40",
     "theme": "epic"
+  },
+  {
+    "season": "2",
+    "id": "254578",
+    "slug": "phoenix",
+    "chosen_by": "3",
+    "order": "41",
+    "theme": "espionage"
   }
 ]
