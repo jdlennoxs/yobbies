@@ -294,5 +294,21 @@
     "chosen_by": "3",
     "order": "41",
     "theme": "espionage"
+  },
+  {
+    "season": "2",
+    "id": "5876",
+    "slug": "the-mist",
+    "chosen_by": "10",
+    "order": "42",
+    "theme": "monster"
+  },
+  {
+    "season": "2",
+    "id": "11423",
+    "slug": "memories-of-murder",
+    "chosen_by": "1",
+    "order": "43",
+    "country": "korea"
   }
 ]
