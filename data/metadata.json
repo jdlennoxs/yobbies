@@ -310,5 +310,21 @@
     "chosen_by": "1",
     "order": "43",
     "country": "korea"
+  },
+  {
+    "season": "2",
+    "id": "619264",
+    "slug": "el-hoyo",
+    "chosen_by": "9",
+    "order": "44",
+    "country": "spain"
+  },
+  {
+    "season": "2",
+    "id": "419914",
+    "slug": "song-of-granite",
+    "chosen_by": "5",
+    "order": "45",
+    "country": "ireland"
   }
 ]
