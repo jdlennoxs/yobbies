@@ -342,5 +342,21 @@
     "chosen_by": "3",
     "order": "47",
     "country": "iceland"
+  },
+  {
+    "season": "2",
+    "id": "8937",
+    "slug": "tokyo-sonata",
+    "chosen_by": "6",
+    "order": "48",
+    "country": "japan"
+  },
+  {
+    "season": "2",
+    "id": "580175",
+    "slug": "druk",
+    "chosen_by": "8",
+    "order": "49",
+    "country": "denmark"
   }
 ]
