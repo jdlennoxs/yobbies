@@ -3,20 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
     "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.9",
+    "@neo4j/graphql": "^3.0.0",
     "@nivo/core": "^0.67.0",
     "@nivo/geo": "^0.67.0",
     "@nivo/radar": "^0.67.0",
     "@nivo/scatterplot": "^0.67.0",
+    "apollo-server": "^3.6.3",
+    "apollo-server-micro": "^3.6.3",
     "bulma": "^0.9.1",
+    "graphql": "^16.3.0",
     "lodash": "^4.17.21",
+    "micro": "^9.3.4",
+    "neo4j-driver": "^4.4.2",
     "next": "10.0.5",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "node-fetch": "^2.6.1",
