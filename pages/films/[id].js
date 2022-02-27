@@ -5,6 +5,7 @@ import MovieCard, { getPath } from "../../components/movie-card";
 import ActorCard from "../../components/actor-card";
 import moviesdata from "../../data/movies.json";
 import yobsdata from "../../data/yobs.json";
+import { query } from "../../helpers/static-props-query";
 
 export default function MoviePage({ details, director, cast, yob }) {
   //   const detailsMap = {
@@ -30,10 +31,21 @@ export default function MoviePage({ details, director, cast, yob }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="description" content={details.overview.replace(/&amp;/g, "&")} />
+        <meta
+          name="description"
+          content={details.overview.replace(/&amp;/g, "&")}
+        />
         <meta property="og:title" content={details.title} key="ogtitle" />
-        <meta property="og:description" content={details.overview.replace(/&amp;/g, "&")} key="ogdesc" />
-        <meta property="og:image" content={getPath(details.poster_path)} key="ogimage" />
+        <meta
+          property="og:description"
+          content={details.overview.replace(/&amp;/g, "&")}
+          key="ogdesc"
+        />
+        <meta
+          property="og:image"
+          content={getPath(details.poster_path)}
+          key="ogimage"
+        />
         <title>{details.title}</title>
       </Head>
       <div class="my-6 py-6 mx-3">
@@ -50,16 +62,18 @@ export default function MoviePage({ details, director, cast, yob }) {
                     <h1 class="title is-1 has-text-white">{details.title}</h1>
                     <h1 class="subtitle is-3 has-text-primary">
                       ({new Date(details.release_date).getFullYear()})
-                  </h1>
+                    </h1>
                   </div>
                   <div class="block content is-medium">
-                    <p class="has-text-white subtitle is-3">{details.tagline}</p>
+                    <p class="has-text-white subtitle is-3">
+                      {details.tagline}
+                    </p>
                     <p class="has-text-white">
                       {details.overview.replace(/&amp;/g, "&")}
                     </p>
                     <p class="title is-3 has-text-primary">
                       {10 * details.vote_average}%
-                  </p>
+                    </p>
                     <p class="subtitle is-5 has-text-white">Viewer Rating</p>
                   </div>
 
@@ -75,11 +89,16 @@ export default function MoviePage({ details, director, cast, yob }) {
               <>
                 {showCast.map((actor) => (
                   <div class="column is-one-fifth-tablet is-half-mobile">
-                    <ActorCard name={actor.name} subtitle={actor.character} image={actor.profile_path} type="actor" showSubtitle />
+                    <ActorCard
+                      name={actor.name}
+                      subtitle={actor.character}
+                      image={actor.profile_path}
+                      type="actor"
+                      showSubtitle
+                    />
                   </div>
                 ))}
               </>
-              {/* <MovieCard path={c.profile_path}/>))} */}
             </div>
             {showCast.length === 10 ? (
               <button
@@ -89,13 +108,13 @@ export default function MoviePage({ details, director, cast, yob }) {
                 Show All
               </button>
             ) : (
-                <button
-                  className="button is-black"
-                  onClick={() => setShowCast(topCast)}
-                >
-                  Show Less
-                </button>
-              )}
+              <button
+                className="button is-black"
+                onClick={() => setShowCast(topCast)}
+              >
+                Show Less
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -104,9 +123,17 @@ export default function MoviePage({ details, director, cast, yob }) {
 }
 
 export async function getStaticPaths() {
-  const paths = Object.keys(moviesdata).map((slug) => ({
-    params: { id: slug },
+  const { films } = await query(`
+  { films
+      {
+          slug
+      } 
+  }
+`);
+  const paths = films.map((film) => ({
+    params: { id: film.slug },
   }));
+  console.log(paths);
   return {
     paths,
     fallback: false,
@@ -114,7 +141,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const movie = moviesdata[context.params.id];
+  const { films } = await query(`
+  { films
+      {
+          where: {slug: ${context.params.id}}
+      } 
+  }
+`);
   const yobs = yobsdata;
   return {
     props: {

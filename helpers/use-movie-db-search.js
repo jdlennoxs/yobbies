@@ -5,7 +5,6 @@ import useSWR from "swr";
 const fetcher = async (url) => {
   try {
     const response = await fetch(url);
-    console.log(response);
     return response.json();
   } catch (e) {
     console.log(e);

@@ -11,10 +11,10 @@ const typeDefs = gql`
       @relationship(
         type: "NOMINATED_FOR"
         direction: OUT
-        properties: "NominatedFor1"
+        properties: "NominatedFor"
       )
     winnerOfAward: Award
-      @relationship(type: "WINNER_OF", direction: OUT, properties: "WinnerOf1")
+      @relationship(type: "WINNER_OF", direction: OUT, properties: "WinnerOf")
     filmChosenBy: Film @relationship(type: "CHOSEN_BY", direction: IN)
   }
 
@@ -29,7 +29,7 @@ const typeDefs = gql`
     id: ID! @unique
     slug: String! @unique
     title: String
-    order: Int
+    order: Int @unique
     poster_path: String
     budget: Int
     tagline: String
@@ -40,7 +40,7 @@ const typeDefs = gql`
     release_date: DateTime
     chosenByYob: Yob @relationship(type: "CHOSEN_BY", direction: OUT)
     watchedInSeason: Season @relationship(type: "WATCHED_IN", direction: OUT)
-    nominatedForAward: Award
+    nominatedForAward: [Award!]!
       @relationship(
         type: "NOMINATED_FOR"
         direction: OUT
@@ -48,11 +48,17 @@ const typeDefs = gql`
       )
     winnerOfAward: Award
       @relationship(type: "WINNER_OF", direction: OUT, properties: "WinnerOf")
-    hasGenreGenre: Genre @relationship(type: "HAS_GENRE", direction: OUT)
-    actorActedIn: Actor @relationship(type: "ACTED_IN", direction: IN)
+    hasGenreGenre: [Genre!]! @relationship(type: "HAS_GENRE", direction: OUT)
+    actorActedIn: [Actor!]!
+      @relationship(type: "ACTED_IN", properties: "ActedIn", direction: IN)
     directorDirected: Director @relationship(type: "DIRECTED", direction: IN)
-    featuresLanguage: Language @relationship(type: "FEATURES", direction: OUT)
-    originCountry: Country @relationship(type: "ORIGIN", direction: OUT)
+    featuresLanguage: [Language!]!
+      @relationship(type: "FEATURES", direction: OUT)
+    originCountry: [Country!]! @relationship(type: "ORIGIN", direction: OUT)
+  }
+
+  interface ActedIn @relationshipProperties {
+    roles: [String!]
   }
 
   type Award {
@@ -64,10 +70,10 @@ const typeDefs = gql`
       @relationship(
         type: "NOMINATED_FOR"
         direction: IN
-        properties: "NominatedFor1"
+        properties: "NominatedFor"
       )
     yobWinnerOf: Yob
-      @relationship(type: "WINNER_OF", direction: IN, properties: "WinnerOf1")
+      @relationship(type: "WINNER_OF", direction: IN, properties: "WinnerOf")
     filmNominatedFor: Film
       @relationship(
         type: "NOMINATED_FOR"
@@ -84,7 +90,8 @@ const typeDefs = gql`
     profile_path: String
     gender: Int
     popularity: Float
-    actedInFilm: Film @relationship(type: "ACTED_IN", direction: OUT)
+    actedInFilm: Film
+      @relationship(type: "ACTED_IN", properties: "ActedIn", direction: OUT)
   }
 
   type Director {
@@ -117,14 +124,6 @@ const typeDefs = gql`
   }
 
   interface WinnerOf {
-    season: String
-  }
-
-  interface NominatedFor1 {
-    season: String
-  }
-
-  interface WinnerOf1 {
     season: String
   }
 `;
