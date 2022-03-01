@@ -5,11 +5,20 @@ export default function Yobs({ yobs }) {
 }
 
 export async function getStaticProps() {
-  const { yobs } = await query(`
+  const yobs = await query(`
     { yobs
         {
             name 
-            id
+            filmChosenBy {
+              slug
+              poster_path
+              nominatedForAward {
+                name
+              }
+            }
+            nominatedForAward {
+              name
+            }
         } 
     }
 `);

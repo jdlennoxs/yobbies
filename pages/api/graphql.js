@@ -7,7 +7,7 @@ const typeDefs = gql`
     id: ID! @unique
     name: String!
     image: String
-    nominatedForAward: Award
+    nominatedForAward: [Award!]!
       @relationship(
         type: "NOMINATED_FOR"
         direction: OUT
@@ -15,7 +15,7 @@ const typeDefs = gql`
       )
     winnerOfAward: Award
       @relationship(type: "WINNER_OF", direction: OUT, properties: "WinnerOf")
-    filmChosenBy: Film @relationship(type: "CHOSEN_BY", direction: IN)
+    filmChosenBy: [Film!]! @relationship(type: "CHOSEN_BY", direction: IN)
   }
 
   type Season {
@@ -66,7 +66,7 @@ const typeDefs = gql`
     name: String
     description: String
     type: String
-    yobNominatedFor: Yob
+    yobNominatedFor: [Yob!]!
       @relationship(
         type: "NOMINATED_FOR"
         direction: IN
@@ -74,7 +74,7 @@ const typeDefs = gql`
       )
     yobWinnerOf: Yob
       @relationship(type: "WINNER_OF", direction: IN, properties: "WinnerOf")
-    filmNominatedFor: Film
+    filmNominatedFor: [Film!]!
       @relationship(
         type: "NOMINATED_FOR"
         direction: IN
@@ -90,7 +90,7 @@ const typeDefs = gql`
     profile_path: String
     gender: Int
     popularity: Float
-    actedInFilm: Film
+    actedInFilm: [Film!]!
       @relationship(type: "ACTED_IN", properties: "ActedIn", direction: OUT)
   }
 
@@ -100,23 +100,23 @@ const typeDefs = gql`
     profile_path: String
     gender: Int
     popularity: Float
-    directedFilm: Film @relationship(type: "DIRECTED", direction: OUT)
+    directedFilm: [Film!]! @relationship(type: "DIRECTED", direction: OUT)
   }
 
   type Language {
     name: String @unique
-    filmFeatures: Film @relationship(type: "FEATURES", direction: IN)
+    filmFeatures: [Film!]! @relationship(type: "FEATURES", direction: IN)
   }
 
   type Country {
     iso: String @unique
     name: String
-    filmOrigin: Film @relationship(type: "ORIGIN", direction: IN)
+    filmOrigin: [Film!]! @relationship(type: "ORIGIN", direction: IN)
   }
 
   type Genre {
     name: String @unique
-    filmHasGenre: Film @relationship(type: "HAS_GENRE", direction: IN)
+    filmHasGenre: [Film!]! @relationship(type: "HAS_GENRE", direction: IN)
   }
 
   interface NominatedFor {
