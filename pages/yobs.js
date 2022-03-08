@@ -28,7 +28,7 @@ export default function Yobs({ yobs }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { yobs } = await query(`
     { yobs
         {

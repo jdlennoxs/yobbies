@@ -111,7 +111,7 @@ export default function Awards({ awards }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { awards } = await query(`
     { awards
         {
