@@ -24,7 +24,7 @@ export default function ActorCard({
   return (
     <div
       className="picture-card"
-      style={{ boxShadow: winner ? "0px 0px 15px 1px gold" : "" }}
+      style={{ boxShadow: winner ? "0px 0px 15px 1px #b88746" : "" }}
     >
       <div className="card" style={{ overflow: "hidden" }}>
         {unfix ? (

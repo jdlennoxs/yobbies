@@ -19,7 +19,6 @@ const GET_FILMS = gql`
   }
 `;
 export default function Admin({ awards }) {
-  console.log(awards);
   const [active, setActive] = useState(TABS[0]);
 
   const { loading, error, data } = useQuery(GET_FILMS);

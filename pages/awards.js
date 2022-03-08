@@ -53,7 +53,7 @@ export default function Awards({ awards }) {
               <div className="columns is-multiline is-mobile">
                 {award.yobNominatedForConnection.edges.map((yob) => (
                   <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
-                    <Link href={`/yob/${yob.node.id}`}>
+                    <Link href={`/yobs/${yob.node.id}`}>
                       <a className="poster-link">
                         <ActorCard
                           name={yob.node.name}

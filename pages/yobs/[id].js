@@ -1,8 +1,10 @@
 import { query } from "../../helpers/static-props-query";
 import Link from "next/link";
 import MovieCard from "../../components/movie-card";
+import StatCard from "../../components/stat-card";
+import { flatten, groupBy } from "lodash";
 
-export default function Yobs({ yob }) {
+export default function Yobs({ yob, nominations, wins, awards }) {
   return (
     <div className="my-6 py-6 mx-3">
       <div className="narrow-container">
@@ -14,6 +16,14 @@ export default function Yobs({ yob }) {
                   <h1 className="title is-1 has-text-white">{yob.name}</h1>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="columns is-multiline block">
+            <div className="column is-one-third-tablet">
+              <StatCard title="Nominations" value={nominations} />
+            </div>
+            <div className="column is-one-third-tablet">
+              <StatCard title="Wins" value={wins} />
             </div>
           </div>
           <div className="content">
@@ -30,6 +40,20 @@ export default function Yobs({ yob }) {
               </div>
             ))}
           </div>
+          {wins && (
+            <>
+              <div className="content">
+                <h2 className="has-text-white">Winner</h2>
+              </div>
+              <ul>
+                {awards["1"].map((award) => (
+                  <li className="gradient-text">
+                    <h3 className="is-size-3">{award.name}</h3>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -61,20 +85,64 @@ export async function getStaticProps(context) {
             )
           {
               name
+              nominatedForAwardConnection {
+                totalCount
+              }
+              winnerOfAwardConnection {
+                totalCount
+                edges {
+                  season
+                  node {
+                    name
+                  }
+                }
+              }
               filmChosenBy {
                 slug
                 poster_path
-                nominatedForAward {
-                  name
+                nominatedForAwardConnection {
+                  totalCount
                 }
-              }
-              nominatedForAward {
-                name
+                winnerOfAwardConnection {
+                  totalCount
+                  edges {
+                    season
+                    node {
+                      name
+                    }
+                  }
+                }
               }
           }
       }
   `);
+  const yob = yobs[0];
+  const filmNominations = yob.filmChosenBy.reduce(
+    (previousValue, currentValue) =>
+      previousValue + currentValue.nominatedForAwardConnection.totalCount,
+    0
+  );
+  const nominations =
+    yob.nominatedForAwardConnection.totalCount + filmNominations;
+  const filmWins = yob.filmChosenBy.reduce(
+    (previousValue, currentValue) =>
+      previousValue + currentValue.winnerOfAwardConnection.totalCount,
+    0
+  );
+  const wins = yob.winnerOfAwardConnection.totalCount + filmWins;
+  const awardsWon = yob.winnerOfAwardConnection.edges.map((award) => ({
+    season: award.season,
+    name: award.node.name,
+  }));
+  const filmAwardsWon = yob.filmChosenBy.map((film) =>
+    film.winnerOfAwardConnection.edges.map((award) => ({
+      season: award.season,
+      name: award.node.name,
+    }))
+  );
+  const awards = awardsWon.concat(flatten(filmAwardsWon));
+
   return {
-    props: { yob: yobs[0] },
+    props: { yob, nominations, wins, awards: groupBy(awards, "season") },
   };
 }
