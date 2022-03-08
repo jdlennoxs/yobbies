@@ -1,8 +1,7 @@
-import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
-import FilmAdmin from "../../modules/films";
-import AwardAdmin from "../../modules/awards";
 import { query } from "../../helpers/static-props-query";
+import AwardAdmin from "../../modules/awards";
+import FilmAdmin from "../../modules/films";
 
 const TABS = ["Films", "Awards"];
 

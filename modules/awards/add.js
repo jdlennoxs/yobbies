@@ -10,9 +10,6 @@ const CREATE_AWARD = gql`
   }
 `;
 export default function AddAward() {
-  // const { loading, error, data } = useQuery(GET_ADD_DATA);
-  // const { film, details, cast, director, isLoading, isError } =
-  //   useMovieDbFetch(id);
   const [addAward, { data: nodesCreated, loading: posting, error: failed }] =
     useMutation(CREATE_AWARD);
 
