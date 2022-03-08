@@ -38,6 +38,7 @@ export default function Award({ award, seasonsAggregate }) {
     updateAwards,
     { data: nodesCreated, loading: posting, error: failed },
   ] = useMutation(UPDATE_AWARD);
+  console.log(process.env.NEXT_URL);
 
   const save = (event) => {
     event.preventDefault();
@@ -205,7 +206,7 @@ export default function Award({ award, seasonsAggregate }) {
   );
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const { awards } = await query(`
     { awards
         {
@@ -222,7 +223,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { awards, seasonsAggregate } = await query(`
       { awards
             (

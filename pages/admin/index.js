@@ -5,26 +5,9 @@ import AwardAdmin from "../../modules/awards";
 import { query } from "../../helpers/static-props-query";
 
 const TABS = ["Films", "Awards"];
-const GET_FILMS = gql`
-  query Films {
-    films {
-      id
-      slug
-      title
-      poster_path
-      chosenByYob {
-        name
-      }
-    }
-  }
-`;
+
 export default function Admin({ awards }) {
   const [active, setActive] = useState(TABS[0]);
-
-  const { loading, error, data } = useQuery(GET_FILMS);
-
-  //   if (loading || isLoading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
 
   return (
     <div className="container p-3 my-6 ">
@@ -36,7 +19,7 @@ export default function Admin({ awards }) {
         <ul>
           {TABS.map((type) => (
             <li
-              className={active === type && "is-active"}
+              className={active === type ? "is-active" : undefined}
               key={type}
               aria-hidden
               onClick={() => setActive(type)}
@@ -52,7 +35,7 @@ export default function Admin({ awards }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { awards } = await query(`
       { awards
           {

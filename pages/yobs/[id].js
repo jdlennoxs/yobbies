@@ -60,7 +60,7 @@ export default function Yobs({ yob, nominations, wins, awards }) {
   );
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const { yobs } = await query(`
     { yobs
         {
@@ -77,7 +77,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { yobs } = await query(`
       { yobs
             (

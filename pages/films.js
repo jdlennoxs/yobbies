@@ -31,7 +31,7 @@ export default function Movies({ films }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { films } = await query(`
       { films
           {
