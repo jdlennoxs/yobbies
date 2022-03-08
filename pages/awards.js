@@ -1,24 +1,17 @@
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
-import moviesdata from "../data/movies.json";
-import yobsdata from "../data/yobs.json";
-import actorsdata from "../data/actors.json";
+import { query } from "../helpers/static-props-query";
+import MovieCard from "../components/movie-card";
+import ActorCard from "../components/actor-card";
 
-const POSTS_PATH = path.join(process.cwd(), "data/awards");
-
-export default function Awards({ awards, movies, yobs, actors }) {
-  const lookupFilm = (id) => movies[id].details.title;
-  const lookupActor = (id) => actors[id].name;
-  const lookupYobs = (id) => yobs[id].name;
+export default function Awards({ awards }) {
   return (
     <div className="container p-3 my-6 ">
       <div className="content">
         <h1 className="has-text-white">The Awards</h1>
       </div>
-      <div class="tabs">
+      <div className="tabs">
         <ul>
-          <li class="is-active">
+          <li className="is-active">
             <a>Season 1</a>
           </li>
           <li>
@@ -30,15 +23,56 @@ export default function Awards({ awards, movies, yobs, actors }) {
         {awards.map((award) => (
           <li>
             <div className="block">
-              <Link href={`/awards/${award.slug}`}>
-                <a className="poster-link">
-                  <>
-                    <h2 className="is-size-4 has-text-white">{award.name}</h2>
-                    <p>{award.description}</p>
-                  </>
-                </a>
-              </Link>
+              <h2 className="is-size-4 has-text-white">{award.name}</h2>
+              <p>{award.description}</p>
             </div>
+            {award.type === "film" ? (
+              <div className="columns is-multiline is-mobile">
+                {award.filmNominatedForConnection.edges.map((film) => (
+                  <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
+                    <Link href={`/films/${film.node.slug}`}>
+                      <a className="poster-link">
+                        <ActorCard
+                          unfix
+                          name={film.detail}
+                          image={film.node.poster_path}
+                          type="film"
+                          winner={
+                            film.node.slug ===
+                              award.filmWinnerOfConnection.edges[0].node.slug &&
+                            film.detail ===
+                              award.filmWinnerOfConnection.edges[0].detail
+                          }
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="columns is-multiline is-mobile">
+                {award.yobNominatedForConnection.edges.map((yob) => (
+                  <div className="column is-one-fifth-desktop is-one-third-tablet is-half-mobile">
+                    <Link href={`/yob/${yob.node.id}`}>
+                      <a className="poster-link">
+                        <ActorCard
+                          name={yob.node.name}
+                          subtitle={yob.detail}
+                          showSubtitle
+                          type="actor"
+                          winner={
+                            yob.node.id ===
+                              award.yobWinnerOfConnection.edges[0].node.id &&
+                            yob.detail ===
+                              award.yobWinnerOfConnection.edges[0].detail
+                          }
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="table-container">
               <table className="table is-narrow has-background-dark">
                 <tr>
@@ -78,33 +112,54 @@ export default function Awards({ awards, movies, yobs, actors }) {
 }
 
 export async function getStaticProps() {
-  const movies = moviesdata;
-  const yobs = yobsdata;
-  const actors = actorsdata;
-  const fullPaths = fs.readdirSync(POSTS_PATH);
-  const paths = fullPaths // Remove file extensions for page paths
-    .map((path) => path.replace(/\.json?$/, ""))
-    // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ id: slug }));
-
-  const awards = paths.map((p) => {
-    const fullPath = path.join(POSTS_PATH, `${p.id}.json`);
-    const fileContents = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-    return {
-      name: fileContents.name,
-      description: fileContents.description,
-      nominees: fileContents.nominees,
-      type: fileContents.type,
-      slug: p.id,
-    };
-  });
+  const { awards } = await query(`
+    { awards
+        {
+            name
+            description
+            type
+            id
+            yobNominatedForConnection {
+              edges {
+                season
+                detail
+                node {
+                  name
+                  id
+                }
+              }
+            }
+            filmNominatedForConnection {
+              edges {
+                season
+                detail
+                node {
+                  poster_path
+                  slug
+                }
+              }
+            }
+            filmWinnerOfConnection {
+              edges {
+                detail
+                node {
+                  slug
+                }
+              }
+            }
+            yobWinnerOfConnection {
+              edges {
+                detail
+                node {
+                  id
+                }
+              }
+            }
+        } 
+    }
+`);
   return {
-    props: {
-      awards,
-      movies,
-      actors,
-      yobs,
-    },
+    props: { awards },
   };
   // will be passed to the page component as props
 }

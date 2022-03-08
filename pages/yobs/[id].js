@@ -1,21 +1,17 @@
 import { query } from "../../helpers/static-props-query";
 import Link from "next/link";
-import MovieCard, { getPath } from "../../components/movie-card";
+import MovieCard from "../../components/movie-card";
 
 export default function Yobs({ yob }) {
   return (
-    <div class="my-6 py-6 mx-3">
-      <div class="narrow-container">
-        <div class="hero">
-          <div class="columns">
-            <div class="column is-narrow">
-              {/* <MovieCard path={details.poster_path} /> */}
-            </div>
-
-            <div class="column">
-              <div class="block">
-                <div class="content">
-                  <h1 class="title is-1 has-text-white">{yob.name}</h1>
+    <div className="my-6 py-6 mx-3">
+      <div className="narrow-container">
+        <div className="hero">
+          <div className="columns">
+            <div className="column">
+              <div className="block">
+                <div className="content">
+                  <h1 className="title is-1 has-text-white">{yob.name}</h1>
                 </div>
               </div>
             </div>
@@ -51,7 +47,6 @@ export async function getStaticPaths() {
   const paths = yobs.map((yob) => ({
     params: { id: yob.id },
   }));
-  console.log(paths);
   return {
     paths,
     fallback: false,

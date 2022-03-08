@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav
@@ -31,14 +31,21 @@ export default function NavBar() {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className={"navbar-menu " + (isOpen ? "is-active" : "")}>
+      <div
+        id="navbarBasicExample"
+        className={"navbar-menu " + (isOpen ? "is-active" : "")}
+      >
         <div className="navbar-start">
-          <Link href="/movies">
-            <a className="navbar-item">Movies</a>
+          <Link href="/films">
+            <a className="navbar-item">Films</a>
           </Link>
 
           <Link href="/awards">
             <a className="navbar-item">Awards</a>
+          </Link>
+
+          <Link href="/yobs">
+            <a className="navbar-item">Yobs</a>
           </Link>
 
           <Link href="/statistics">

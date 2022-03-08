@@ -1,25 +1,34 @@
+import Link from "next/link";
 import React from "react";
 
-export default function Detail({ director, details, yob }) {
+export default function Detail({
+  yob,
+  genres,
+  runtime,
+  countries,
+  revenue,
+  budget,
+  languages,
+}) {
   return (
     <div className="block content is-small">
       <div className="table-container">
-        <table className="table is-narrow has-background-dark">
+        <table
+          className="table is-narrow has-background-dark"
+          style={{ fontSize: "18px" }}
+        >
           <tr>
             <td>
               <p className="has-text-white">Chosen by: </p>
             </td>
             <td>
-              <p className="has-text-white">{yob.name || "all"}</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <p className="has-text-white">Directed by: </p>
-            </td>
-            <td>
-              <p className="has-text-white">{director.name}</p>
+              <Link href={`/yobs/${yob.id}`}>
+                <div className="box has-background-dark">
+                  <a className="content has-text-centered">
+                    <h2 className="m-2 gradient-text">{yob.name}</h2>
+                  </a>
+                </div>
+              </Link>
             </td>
           </tr>
 
@@ -28,7 +37,7 @@ export default function Detail({ director, details, yob }) {
               <p className="has-text-white">Genre: </p>
             </td>
             <td>
-              {details.genres.map((c) => (
+              {genres.map((c) => (
                 <div className="info-tag">{c.name}</div>
               ))}
             </td>
@@ -39,7 +48,7 @@ export default function Detail({ director, details, yob }) {
               <p className="has-text-white">Runtime: </p>
             </td>
             <td>
-              <p className="has-text-white">{details.runtime} minutes</p>
+              <p className="has-text-white">{runtime} minutes</p>
             </td>
           </tr>
 
@@ -48,7 +57,7 @@ export default function Detail({ director, details, yob }) {
               <p className="has-text-white">Country: </p>
             </td>
             <td>
-              {details.production_countries.map((c) => (
+              {countries.map((c) => (
                 <div className="info-tag">{c.name}</div>
               ))}
             </td>
@@ -56,18 +65,18 @@ export default function Detail({ director, details, yob }) {
 
           <tr>
             <td>
-              <p className="has-text-white">Produced by: </p>
+              <p className="has-text-white">Languages: </p>
             </td>
             <td>
               <div style={{ flexWrap: "wrap" }} className="is-flex">
-                {details.production_companies.map((c) => (
+                {languages.map((c) => (
                   <div className="info-tag">{c.name}</div>
                 ))}
               </div>
             </td>
           </tr>
 
-          {details.budget ? (
+          {budget ? (
             <tr>
               <td>
                 <p className="has-text-white">Budget: </p>
@@ -77,13 +86,13 @@ export default function Detail({ director, details, yob }) {
                   {new Intl.NumberFormat("en-US", {
                     style: "currency",
                     currency: "USD",
-                  }).format(details.budget)}
+                  }).format(budget)}
                 </p>
               </td>
             </tr>
           ) : null}
 
-          {details.revenue ? (
+          {revenue ? (
             <tr>
               <td>
                 <p className="has-text-white">Revenue: </p>
@@ -93,7 +102,7 @@ export default function Detail({ director, details, yob }) {
                   {new Intl.NumberFormat("en-US", {
                     style: "currency",
                     currency: "USD",
-                  }).format(details.revenue)}
+                  }).format(revenue)}
                 </p>
               </td>
             </tr>

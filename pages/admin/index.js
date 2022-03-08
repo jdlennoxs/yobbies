@@ -1,7 +1,8 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
-import FilmAdmin from "../../modules/add-film/index";
-import Link from "next/link";
+import FilmAdmin from "../../modules/films";
+import AwardAdmin from "../../modules/awards";
+import { query } from "../../helpers/static-props-query";
 
 const TABS = ["Films", "Awards"];
 const GET_FILMS = gql`
@@ -17,7 +18,8 @@ const GET_FILMS = gql`
     }
   }
 `;
-export default function Admin() {
+export default function Admin({ awards }) {
+  console.log(awards);
   const [active, setActive] = useState(TABS[0]);
 
   const { loading, error, data } = useQuery(GET_FILMS);
@@ -46,6 +48,21 @@ export default function Admin() {
         </ul>
       </div>
       {active === "Films" && <FilmAdmin />}
+      {active === "Awards" && <AwardAdmin awards={awards} />}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const { awards } = await query(`
+      { awards
+          {
+              name
+              id
+          }
+      }
+  `);
+  return {
+    props: { awards },
+  };
 }

@@ -62,7 +62,7 @@ const typeDefs = gql`
   }
 
   type Award {
-    id: String
+    id: ID! @id
     name: String
     description: String
     type: String
@@ -121,10 +121,12 @@ const typeDefs = gql`
 
   interface NominatedFor {
     season: String
+    detail: String
   }
 
   interface WinnerOf {
     season: String
+    detail: String
   }
 `;
 

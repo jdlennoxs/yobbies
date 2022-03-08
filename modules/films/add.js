@@ -1,10 +1,7 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
 import MovieCard from "../../components/movie-card";
-import { useMovieDbFetch } from "../../helpers/use-movie-db-fetch";
-
 import countryCodes from "../../data/countryCodes.json";
-import { useRouter } from "next/router";
+import { useMovieDbFetch } from "../../helpers/use-movie-db-fetch";
 
 const GET_ADD_DATA = gql`
   query Yobs {
