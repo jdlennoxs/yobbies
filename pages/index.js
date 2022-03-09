@@ -31,10 +31,10 @@ export default function Home() {
         <div className="container">
           <div className="columns is-centered is-multiline block">
             <div className="column is-one-third">
-              <Link href="/movies">
+              <Link href="/films">
                 <div className="box has-background-dark">
                   <a className="content has-text-centered">
-                    <h2 className="m-2 gradient-text">Movies</h2>
+                    <h2 className="m-2 gradient-text">Films</h2>
                   </a>
                 </div>
               </Link>
