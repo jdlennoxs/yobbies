@@ -1,0 +1,32 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+        
+      - run: npm install -g yarn
+      - run: yarn install --frozen-lockfile
+      
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+          
+      - run: aws s3 sync s3://serveless-install-state/yobbies/.serverless .serverless --delete
+          
+      - run: npx serverless --debug
+      
+      - run: aws s3 sync .serverless s3://serveless-install-state/yobbies/.serverless --delete 
