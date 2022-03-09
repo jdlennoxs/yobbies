@@ -40,7 +40,7 @@ export default function Yobs({ yob, nominations, wins, awards }) {
               </div>
             ))}
           </div>
-          {wins && (
+          {wins > 0 && (
             <>
               <div className="content">
                 <h2 className="has-text-white">Winner</h2>
