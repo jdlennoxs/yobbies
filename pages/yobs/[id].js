@@ -4,7 +4,7 @@ import MovieCard from "../../components/movie-card";
 import StatCard from "../../components/stat-card";
 import { flatten, groupBy } from "lodash";
 
-export default function Yobs({ yob, nominations, wins, awards }) {
+export default function Yobs({ yob, nominations, wins, awards, runtime }) {
   return (
     <div className="my-6 py-6 mx-3">
       <div className="narrow-container">
@@ -19,6 +19,9 @@ export default function Yobs({ yob, nominations, wins, awards }) {
             </div>
           </div>
           <div className="columns is-multiline block">
+            <div className="column is-one-third-tablet">
+              <StatCard title="Average Runtime" value={`${runtime} minutes`} />
+            </div>
             <div className="column is-one-third-tablet">
               <StatCard title="Nominations" value={nominations} />
             </div>
@@ -100,6 +103,7 @@ export async function getServerSideProps(context) {
               filmChosenBy {
                 slug
                 poster_path
+                runtime
                 nominatedForAwardConnection {
                   totalCount
                 }
@@ -141,8 +145,18 @@ export async function getServerSideProps(context) {
     }))
   );
   const awards = awardsWon.concat(flatten(filmAwardsWon));
+  const runtime = yob.filmChosenBy.reduce(
+    (previousValue, currentValue) => previousValue + currentValue.runtime,
+    0
+  );
 
   return {
-    props: { yob, nominations, wins, awards: groupBy(awards, "season") },
+    props: {
+      yob,
+      nominations,
+      wins,
+      awards: groupBy(awards, "season"),
+      runtime: Math.round(runtime / yob.filmChosenBy.length),
+    },
   };
 }
