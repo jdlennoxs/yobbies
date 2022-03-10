@@ -3,15 +3,24 @@ import NavBar from "../components/navbar";
 import "../styles/globals.scss";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
+import PlausibleProvider from "next-plausible";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <NavBar />
-      <div className="page-wrapper">
-        <Component {...pageProps} />
-      </div>
-      <Footer />
+      <PlausibleProvider
+        domain="yobbies.jdlennoxs.com"
+        selfHosted={true}
+        scriptProps={{
+          src: "https://analytics.jdlennoxs.com/js/plausible.js",
+        }}
+      >
+        <NavBar />
+        <div className="page-wrapper">
+          <Component {...pageProps} />
+        </div>
+        <Footer />
+      </PlausibleProvider>
     </ApolloProvider>
   );
 }
