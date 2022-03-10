@@ -1,11 +1,9 @@
 nextApp:
   component: "@sls-next/serverless-component"
   inputs:
-    cloudfront:
-      distributionId: E2JDAKSJDZ2NR4
+  cloudfront:
+    distributionId: E23M56DUGQFIKE
     domain: ["yobbies", "jdlennoxs.com"]
     domainType: "both"
-    domainRedirects:
-      yobbies.jdlennoxs.com: https://yobbies.jdlennoxs.com
     bucketName: yobbies
     bucketRegion: eu-west-2
