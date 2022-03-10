@@ -126,7 +126,7 @@ export default function MoviePage({ film }) {
   );
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const { films } = await query(`
   { films
       {
@@ -143,7 +143,7 @@ export async function getServerSidePaths() {
   };
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { films } = await query(`
     { films ( 
       where: {slug: "${context.params.id}"}

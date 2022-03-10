@@ -205,7 +205,7 @@ export default function Award({ award, seasonsAggregate }) {
   );
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const { awards } = await query(`
     { awards
         {
@@ -222,7 +222,7 @@ export async function getServerSidePaths() {
   };
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { awards, seasonsAggregate } = await query(`
       { awards
             (

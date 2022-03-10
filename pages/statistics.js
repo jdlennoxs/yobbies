@@ -128,7 +128,7 @@ export default function Statistics({ statistics }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const statistics = await query(`
     { 
         filmsAggregate {
