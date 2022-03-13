@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         domain="yobbies.jdlennoxs.com"
         selfHosted={true}
         scriptProps={{
-          src: "https://analytics.jdlennoxs.com/js/plausible.js",
+          src: "https://jdlennoxs.com/js/plausible.js",
         }}
       >
         <NavBar />
