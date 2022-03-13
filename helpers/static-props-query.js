@@ -1,5 +1,5 @@
 export const query = (query) =>
-  fetch("http://" + process.env.VERCEL_URL + "/api/graphql", {
+  fetch("https://2yxpm8hh84.execute-api.eu-west-2.amazonaws.com/prod/graphql", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
