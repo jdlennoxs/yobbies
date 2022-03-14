@@ -3,7 +3,9 @@ nextApp:
   inputs:
     cloudfront:
       distributionId: E23M56DUGQFIKE
-      domain: ["yobbies", "jdlennoxs.com"]
-      domainType: "both"
-      bucketName: yobbies
-      bucketRegion: eu-west-2
+    domain: ["yobbies", "jdlennoxs.com"]
+    domainType: "both"
+    domainRedirects:
+      yobbies.jdlennoxs.com: https://yobbies.jdlennoxs.com
+    bucketName: yobbies
+    bucketRegion: eu-west-2
