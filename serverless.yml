@@ -1,17 +1,9 @@
 nextApp:
   component: "@sls-next/serverless-component"
   inputs:
-    build:
-      env:
-        GRAPHQL_URI: ${env.GRAPHQL_URI}
-        LAMBDA_API_KEY: ${env.LAMBDA_API_KEY}
     cloudfront:
       distributionId: E23M56DUGQFIKE
       domain: ["yobbies", "jdlennoxs.com"]
       domainType: "both"
       bucketName: yobbies
       bucketRegion: eu-west-2
-      api:
-        minTTL: 10
-        maxTTL: 10
-        defaultTTL: 10
