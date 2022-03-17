@@ -11,3 +11,7 @@ nextApp:
       domainType: "both"
       bucketName: yobbies
       bucketRegion: eu-west-2
+      api:
+        minTTL: 10
+        maxTTL: 10
+        defaultTTL: 10
