@@ -1,9 +1,13 @@
 nextApp:
   component: "@sls-next/serverless-component"
   inputs:
-  cloudfront:
-    distributionId: E23M56DUGQFIKE
-    domain: ["yobbies", "jdlennoxs.com"]
-    domainType: "both"
-    bucketName: yobbies
-    bucketRegion: eu-west-2
+    build:
+      env:
+        GRAPHQL_URI: ${env.GRAPHQL_URI}
+        LAMBDA_API_KEY: ${env.LAMBDA_API_KEY}
+    cloudfront:
+      distributionId: E23M56DUGQFIKE
+      domain: ["yobbies", "jdlennoxs.com"]
+      domainType: "both"
+      bucketName: yobbies
+      bucketRegion: eu-west-2
