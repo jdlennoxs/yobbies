@@ -6,7 +6,6 @@ export default function SearchFilm({ setActiveId }) {
   const [searchTerm, setSearchTerm] = useState();
 
   const search = (event) => {
-    console.log(event);
     event.preventDefault(); // don't redirect the page
     // where we'll add our form logic
     setSearchTerm(event.target.search.value);
