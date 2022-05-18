@@ -4,5 +4,6 @@
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{\"query\": \"{yobs\n {\n name\n }\n }\"}"
+  "body": "{\"query\": \"{yobs\n {\n name\n }\n }\"}",
+  "requestContext": {}
 }
