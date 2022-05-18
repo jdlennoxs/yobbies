@@ -1,9 +1,5 @@
-import config from "../src/aws-exports";
-
-const { endpoint } = config.aws_cloud_logic_custom[0];
-
 export const query = (query) =>
-  fetch(endpoint, {
+  fetch(process.env.API_URL, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
