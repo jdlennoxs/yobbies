@@ -1,9 +1,0 @@
-nextApp:
-  component: "@sls-next/serverless-component"
-  inputs:
-    cloudfront:
-      distributionId: E23M56DUGQFIKE
-      domain: ["yobbies", "jdlennoxs.com"]
-      domainType: "both"
-      bucketName: yobbies
-      bucketRegion: eu-west-2

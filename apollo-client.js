@@ -1,11 +1,12 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
+import config from "./src/aws-exports";
+
+const endpoint = config.aws_cloud_logic_custom[0];
+
 const client = new ApolloClient({
-  uri: "https://2yxpm8hh84.execute-api.eu-west-2.amazonaws.com/prod/graphql",
+  uri: endpoint,
   cache: new InMemoryCache(),
-  headers: {
-    "X-Api-Key": process.env.LAMBDA_API_KEY,
-  },
 });
 
 export default client;

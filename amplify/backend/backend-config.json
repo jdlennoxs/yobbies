@@ -1,0 +1,10 @@
+{
+  "function": {
+    "auraclient": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
+  }
+}
