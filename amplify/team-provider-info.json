@@ -13,12 +13,12 @@
     },
     "categories": {
       "function": {
-        "auraclient": {
+        "auradbconnnect": {
           "neo4JUser": "neo4j",
           "neo4JPassword": "wMctxxAdA1SPjVV74k0X_brM0E-1AkPhKwOizbr4DEU",
           "neo4JUri": "neo4j+s://9c5788ca.databases.neo4j.io",
           "deploymentBucketName": "amplify-amplifyd1208228f20b4-staging-212329-deployment",
-          "s3Key": "amplify-builds/auraclient-4e79685a575171694f4f-build.zip"
+          "s3Key": "amplify-builds/auradbconnnect-344b6d6f6f3757556535-build.zip"
         }
       }
     }

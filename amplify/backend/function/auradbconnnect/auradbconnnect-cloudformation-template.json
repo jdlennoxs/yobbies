@@ -56,12 +56,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "auraclient",
+            "auradbconnnect",
             {
               "Fn::Join": [
                 "",
                 [
-                  "auraclient",
+                  "auradbconnnect",
                   "-",
                   {
                     "Ref": "env"
@@ -107,12 +107,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "yobbiesLambdaRole934ba0ab",
+            "yobbiesLambdaRolee9c6ae91",
             {
               "Fn::Join": [
                 "",
                 [
-                  "yobbiesLambdaRole934ba0ab",
+                  "yobbiesLambdaRolee9c6ae91",
                   "-",
                   {
                     "Ref": "env"

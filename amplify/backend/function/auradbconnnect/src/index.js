@@ -1,3 +1,11 @@
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	NEO4J_USER
+	NEO4J_PASSWORD
+	NEO4J_URI
+Amplify Params - DO NOT EDIT */
+
 const { Neo4jGraphQL } = require("@neo4j/graphql");
 const { ApolloServer, gql } = require("apollo-server-lambda");
 const neo4j = require("neo4j-driver");
