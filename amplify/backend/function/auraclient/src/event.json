@@ -1,0 +1,8 @@
+{
+  "httpMethod": "GET",
+  "path": "/graphql",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"query\": \"{yobs\n {\n name\n }\n }\"}"
+}
